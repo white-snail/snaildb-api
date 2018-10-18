@@ -6,8 +6,8 @@ bin/
 .apt_generated
 .classpath
 .factorypath
-#.project
-#.settings
+.project
+.settings
 .springBeans
 
 ### IntelliJ IDEA ###
@@ -23,6 +23,3 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-
-/uploads/
-/.metadata/

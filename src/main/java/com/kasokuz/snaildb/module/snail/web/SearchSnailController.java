@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/snail/search")
+@RequestMapping("snail/search")
 public class SearchSnailController {
 	
 	@GetMapping
-	public void getSearch(@RequestParam(value = "query", required = true) String query) {
+	public void search(@RequestParam(value = "query", required = true) String query) {
 		
 	}
 

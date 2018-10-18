@@ -1,10 +1,16 @@
 package com.kasokuz.snaildb.module.snail.entity;
 
+import java.util.List;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kasokuz.snaildb.module.snail.utils.NameMapper;
 
 @Entity
 @Table(name = "snail_family")
-public class Family {
+public class Family implements NameMapper.Mappable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,9 +20,13 @@ public class Family {
 	@JoinColumn(name = "superfamily_id")
 	private Superfamily superfamily;
 	
+	@OneToMany(mappedBy = "family")
+	private List<Genus> genuses;
+	
 	@Column(nullable = false)
 	private String name;
 
+	@JsonProperty("id")
 	public Integer getFamilyId() {
 		return familyId;
 	}
@@ -33,6 +43,16 @@ public class Family {
 		this.superfamily = superfamily;
 	}
 
+	@JsonIgnore
+	public List<Genus> getGenuses() {
+		return genuses;
+	}
+
+	public void setGenuses(List<Genus> genuses) {
+		this.genuses = genuses;
+	}
+
+	@Override
 	public String getName() {
 		return name;
 	}
