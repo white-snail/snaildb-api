@@ -1,42 +1,31 @@
 package com.kasokuz.snaildb.module.snail;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.assertj.core.api.Assertions.assertThat;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
+import org.springframework.data.repository.init.RepositoriesPopulatedEvent;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 
 import com.kasokuz.snaildb.module.snail.service.SnailService;
+
+import net.minidev.json.parser.JSONParser;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GetTest extends SnailTest {
 	
-	@Autowired
-	private SnailService service;
-	
-	@Before
-	public void before() {
-		populate(service);
-	}
-	
-	@After
-	public void after() {
-		depopulate(service);
-	}
-	
 	@Test
 	public void testGetSuperfamily() throws Exception {
-		
+		//TODO
 	}
 	
 	@Test

@@ -1,9 +1,28 @@
 package com.kasokuz.snaildb.module.snail;
 
+import java.io.IOException;
+
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.junit.After;
+import org.junit.Before;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
+
 import com.kasokuz.snaildb.module.snail.entity.*;
 import com.kasokuz.snaildb.module.snail.service.SnailService;
 
+@SpringBootTest
 public abstract class SnailTest {
+	
+	@Value("${server.port}")
+	private String port;
+	
+	@Autowired
+	private SnailService service;
 	
 	protected Superfamily superfamily;
 	protected Family family;
@@ -11,7 +30,8 @@ public abstract class SnailTest {
 	protected Species species;
 	protected Subspecies subspecies;
 
-	protected void populate(SnailService service) {
+	@Before
+	public void populateDatabase() {
 		
 		superfamily = new Superfamily();
 		superfamily.setName("achatinoidea");
@@ -39,7 +59,8 @@ public abstract class SnailTest {
 		
 	}
 
-	protected void depopulate(SnailService service) {
+	@After
+	public void depopulateDatabase() {
 		
 		// cascade delete must be used
 		service.deleteSuperfamily(superfamily.getSuperfamilyId());
