@@ -1,15 +1,8 @@
 package com.kasokuz.snaildb.module.snail;
 
-import java.io.IOException;
-
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.kasokuz.snaildb.module.snail.entity.*;
@@ -18,11 +11,10 @@ import com.kasokuz.snaildb.module.snail.service.SnailService;
 @SpringBootTest
 public abstract class SnailTest {
 	
-	@Value("${server.port}")
-	private String port;
-	
 	@Autowired
 	private SnailService service;
+	
+	protected Taxonomer swainson, albers, philippi;
 	
 	protected Superfamily superfamily;
 	protected Family family;
@@ -33,28 +25,57 @@ public abstract class SnailTest {
 	@Before
 	public void populateDatabase() {
 		
+		swainson = new Taxonomer();
+		swainson.setName("William John");
+		swainson.setSurname("Swainson");
+		swainson = service.saveTaxonomer(swainson);
+		
+		albers = new Taxonomer();
+		albers.setName("Johann Christian");
+		albers.setSurname("Albers");
+		albers = service.saveTaxonomer(albers);
+		
+		philippi = new Taxonomer();
+		philippi.setName("");
+		philippi.setSurname("Philippi");
+		philippi = service.saveTaxonomer(philippi);
+		
 		superfamily = new Superfamily();
 		superfamily.setName("achatinoidea");
+		superfamily.setTaxonomer(swainson);
+		superfamily.setTaxonomyYear(1840);
 		superfamily = service.saveSuperfamily(superfamily);
 		
 		family = new Family();
 		family.setSuperfamily(superfamily);
 		family.setName("achatinidae");
+		family.setTaxonomer(swainson);
+		family.setTaxonomyYear(1840);
 		family = service.saveFamily(family);
 		
 		genus = new Genus();
 		genus.setFamily(family);
-		genus.setName("achatina");
+		genus.setName("archachatina");
+		genus.setTaxonomer(albers);
+		genus.setTaxonomyYear(1850);
 		genus = service.saveGenus(genus);
 		
 		species = new Species();
 		species.setGenus(genus);
-		species.setName("achatina");
+		species.setName("marginata");
+		species.setTaxonomer(swainson);
+		species.setTaxonomyYear(1821);
 		species = service.saveSpecies(species);
 		
 		subspecies = new Subspecies();
 		subspecies.setSpecies(species);
 		subspecies.setName("depravata");
+		subspecies.setTaxonomer(philippi);
+		subspecies.setTaxonomyYear(1849);
+		subspecies.setMinHeight(110);
+		subspecies.setMaxHeight(110);
+		subspecies.setMinWidth(60);
+		subspecies.setMaxWidth(60);
 		subspecies = service.saveSubspecies(subspecies);
 		
 	}
@@ -64,6 +85,10 @@ public abstract class SnailTest {
 		
 		// cascade delete must be used
 		service.deleteSuperfamily(superfamily.getSuperfamilyId());
+
+		service.deleteTaxonomer(swainson.getTaxonomerId());
+		service.deleteTaxonomer(albers.getTaxonomerId());
+		service.deleteTaxonomer(philippi.getTaxonomerId());
 		
 	}
 	

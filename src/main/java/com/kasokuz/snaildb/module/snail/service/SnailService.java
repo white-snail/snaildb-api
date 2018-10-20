@@ -10,6 +10,9 @@ import com.kasokuz.snaildb.module.snail.repository.*;
 public class SnailService {
 	
 	@Autowired
+	private TaxonomerRepository taxonomerRepository;
+	
+	@Autowired
 	private SuperfamilyRepository superfamilyRepository;
 	
 	@Autowired
@@ -25,6 +28,10 @@ public class SnailService {
 	private SubspeciesRepository subspeciesRepository;
 	
 	// SAVE
+	
+	public Taxonomer saveTaxonomer(Taxonomer taxonomer) {
+		return taxonomerRepository.save(taxonomer);
+	}
 
 	public Superfamily saveSuperfamily(Superfamily superfamily) {
 		return superfamilyRepository.save(superfamily);
@@ -73,6 +80,10 @@ public class SnailService {
 	}
 	
 	// DELETE
+	
+	public void deleteTaxonomer(Integer taxonomerId) {
+		taxonomerRepository.deleteById(taxonomerId);
+	}
 
 	public void deleteSuperfamily(Integer superfamilyId) {
 		superfamilyRepository.deleteById(superfamilyId);

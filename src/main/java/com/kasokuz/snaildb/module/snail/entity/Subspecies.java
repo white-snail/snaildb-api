@@ -19,6 +19,25 @@ public class Subspecies implements NameMapper.Mappable {
 	
 	@Column(nullable = false)
 	private String name;
+	
+	@ManyToOne
+	@JoinColumn(name = "taxonomer_id")
+	private Taxonomer taxonomer;
+	
+	@Column(nullable = false)
+	private Integer taxonomyYear;
+	
+	@Column(nullable = false)
+	private Integer minHeight;
+	
+	@Column(nullable = false)
+	private Integer maxHeight;
+	
+	@Column(nullable = false)
+	private Integer minWidth;
+	
+	@Column(nullable = false)
+	private Integer maxWidth;
 
 	@JsonProperty("id")
 	public Integer getSubspeciesId() {
@@ -44,6 +63,54 @@ public class Subspecies implements NameMapper.Mappable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Taxonomer getTaxonomer() {
+		return taxonomer;
+	}
+
+	public void setTaxonomer(Taxonomer taxonomer) {
+		this.taxonomer = taxonomer;
+	}
+
+	public Integer getTaxonomyYear() {
+		return taxonomyYear;
+	}
+
+	public void setTaxonomyYear(Integer taxonomyYear) {
+		this.taxonomyYear = taxonomyYear;
+	}
+
+	public Integer getMinHeight() {
+		return minHeight;
+	}
+
+	public void setMinHeight(Integer minHeight) {
+		this.minHeight = minHeight;
+	}
+
+	public Integer getMaxHeight() {
+		return maxHeight;
+	}
+
+	public void setMaxHeight(Integer maxHeight) {
+		this.maxHeight = maxHeight;
+	}
+
+	public Integer getMinWidth() {
+		return minWidth;
+	}
+
+	public void setMinWidth(Integer minWidth) {
+		this.minWidth = minWidth;
+	}
+
+	public Integer getMaxWidth() {
+		return maxWidth;
+	}
+
+	public void setMaxWidth(Integer maxWidth) {
+		this.maxWidth = maxWidth;
 	}
 
 }

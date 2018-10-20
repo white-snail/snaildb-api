@@ -28,30 +28,21 @@ public class GetSnailController {
 	}
 	
 	@RequestMapping(value = "{superfamily}/{family}/{genus}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Result<Genus> getGenus(@PathVariable String superfamily,
-									@PathVariable String family,
-									@PathVariable String genus) {
+	public Result<Genus> getGenus(@PathVariable String superfamily, @PathVariable String family, @PathVariable String genus) {
 		return new Result<>(service.getGenus(genus, superfamily, family));
 	}
 	
 	@RequestMapping(value = "{superfamily}/{family}/{genus}/{species}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Result<Species> getSpecies(@PathVariable String superfamily,
-										@PathVariable String family,
-										@PathVariable String genus,
-										@PathVariable String species) {
+	public Result<Species> getSpecies(@PathVariable String superfamily, @PathVariable String family, @PathVariable String genus, @PathVariable String species) {
 		return new Result<>(service.getSpecies(species, superfamily, family, genus));
 	}
 	
 	@RequestMapping(value = "{superfamily}/{family}/{genus}/{species}/{subspecies}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Result<Subspecies> getSubspecies(@PathVariable String superfamily,
-											@PathVariable String family,
-											@PathVariable String genus,
-											@PathVariable String species,
-											@PathVariable String subspecies) {
+	public Result<Subspecies> getSubspecies(@PathVariable String superfamily, @PathVariable String family, @PathVariable String genus, @PathVariable String species, @PathVariable String subspecies) {
 		return new Result<>(service.getSubspecies(subspecies, superfamily, family, genus, species));
 	}
 	
-	private static class Result<T> {
+	public static class Result<T> {
 		
 		private T result;
 		
@@ -59,7 +50,6 @@ public class GetSnailController {
 			this.result = result;
 		}
 		
-		@SuppressWarnings("unused")
 		public T getResult() {
 			return result;
 		}

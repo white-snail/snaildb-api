@@ -21,6 +21,13 @@ public class Superfamily implements NameMapper.Mappable {
 	
 	@Column(nullable = false)
 	private String name;
+	
+	@ManyToOne
+	@JoinColumn(name = "taxonomer_id")
+	private Taxonomer taxonomer;
+	
+	@Column(nullable = false)
+	private Integer taxonomyYear;
 
 	@JsonProperty("id")
 	public Integer getSuperfamilyId() {
@@ -47,6 +54,22 @@ public class Superfamily implements NameMapper.Mappable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Taxonomer getTaxonomer() {
+		return taxonomer;
+	}
+
+	public void setTaxonomer(Taxonomer taxonomer) {
+		this.taxonomer = taxonomer;
+	}
+
+	public Integer getTaxonomyYear() {
+		return taxonomyYear;
+	}
+
+	public void setTaxonomyYear(Integer taxonomyYear) {
+		this.taxonomyYear = taxonomyYear;
 	}
 
 }
