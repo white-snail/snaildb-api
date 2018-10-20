@@ -7,44 +7,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.kasokuz.snaildb.module.snail.entity.*;
-import com.kasokuz.snaildb.module.snail.web.get.GetByNameSnailController;
+import com.kasokuz.snaildb.module.snail.web.Result;
+import com.kasokuz.snaildb.module.snail.web.get.GetSnailByNameController;
+import com.kasokuz.snaildb.module.snail.web.get.response.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GetTest extends SnailTest {
 	
 	@Autowired
-	private GetByNameSnailController controller;
+	private GetSnailByNameController controller;
 	
-	/*@Test
+	@Test
 	public void testGetSuperfamily() {
-		Result<Superfamily> result = controller.getSuperfamily(superfamily.getName());
+		Result<GetSuperfamilyResponse> result = controller.getSuperfamily(superfamily.getName());
 		Assert.assertNotNull(result.getResult());
 	}
 	
 	@Test
 	public void testGetFamily() {
-		Result<Family> result = controller.getFamily(superfamily.getName(), family.getName());
+		Result<GetFamilyResponse> result = controller.getFamily(superfamily.getName(), family.getName());
 		Assert.assertNotNull(result.getResult());
 	}
 	
 	@Test
 	public void testGetGenus() {
-		Result<Genus> result = controller.getGenus(superfamily.getName(), family.getName(), genus.getName());
+		Result<GetGenusResponse> result = controller.getGenus(superfamily.getName(), family.getName(), genus.getName());
 		Assert.assertNotNull(result.getResult());
 	}
 	
 	@Test
 	public void testGetSpecies() {
-		Result<Species> result = controller.getSpecies(superfamily.getName(), family.getName(), genus.getName(), species.getName());
+		Result<GetSpeciesResponse> result = controller.getSpecies(superfamily.getName(), family.getName(), genus.getName(), species.getName());
 		Assert.assertNotNull(result.getResult());
 	}
 	
 	@Test
 	public void testGetSubspecies() {
-		Result<Subspecies> result = controller.getSubspecies(superfamily.getName(), family.getName(), genus.getName(), species.getName(), subspecies.getName());
+		Result<GetSubspeciesResponse> result = controller.getSubspecies(superfamily.getName(), family.getName(), genus.getName(), species.getName(), subspecies.getName());
 		Assert.assertNotNull(result.getResult());
-	}*/
+	}
 
 }

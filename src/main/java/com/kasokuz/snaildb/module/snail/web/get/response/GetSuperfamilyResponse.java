@@ -5,13 +5,10 @@ import java.util.List;
 
 public class GetSuperfamilyResponse extends CommonResponse {
 	
-	public List<Child> families = new ArrayList<>();
+	public final List<Child> families = new ArrayList<>();
 	
 	public GetSuperfamilyResponse(com.kasokuz.snaildb.module.snail.entity.Superfamily superfamily) {
-		id = superfamily.getSuperfamilyId();
-		name = superfamily.getName();
-		taxonomer = new Taxonomer(superfamily.getTaxonomer());
-		taxonomyYear = superfamily.getTaxonomyYear();
+		super(superfamily.getSuperfamilyId(), superfamily.getName(), superfamily.getTaxonomer(), superfamily.getTaxonomyYear());
 		for(com.kasokuz.snaildb.module.snail.entity.Family family : superfamily.getFamilies()) {
 			families.add(new Child(family.getFamilyId(), family.getName(), family.getTaxonomer(), family.getTaxonomyYear()));
 		}

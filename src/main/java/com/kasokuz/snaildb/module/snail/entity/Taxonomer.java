@@ -1,8 +1,8 @@
 package com.kasokuz.snaildb.module.snail.entity;
 
-import javax.persistence.*;
+import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "snail_taxonomer")
@@ -17,8 +17,22 @@ public class Taxonomer {
 	
 	@Column(nullable = false)
 	private String surname;
-
-	@JsonProperty("id")
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "taxonomer")
+	private List<Superfamily> superfamilies;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "taxonomer")
+	private List<Family> families;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "taxonomer")
+	private List<Genus> genuses;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "taxonomer")
+	private List<Species> species;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "taxonomer")
+	private List<Subspecies> subspecies;
+	
 	public Integer getTaxonomerId() {
 		return taxonomerId;
 	}
@@ -41,6 +55,46 @@ public class Taxonomer {
 
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+
+	public List<Superfamily> getSuperfamilies() {
+		return superfamilies;
+	}
+
+	public void setSuperfamilies(List<Superfamily> superfamilies) {
+		this.superfamilies = superfamilies;
+	}
+
+	public List<Family> getFamilies() {
+		return families;
+	}
+
+	public void setFamilies(List<Family> families) {
+		this.families = families;
+	}
+
+	public List<Genus> getGenuses() {
+		return genuses;
+	}
+
+	public void setGenuses(List<Genus> genuses) {
+		this.genuses = genuses;
+	}
+
+	public List<Species> getSpecies() {
+		return species;
+	}
+
+	public void setSpecies(List<Species> species) {
+		this.species = species;
+	}
+
+	public List<Subspecies> getSubspecies() {
+		return subspecies;
+	}
+
+	public void setSubspecies(List<Subspecies> subspecies) {
+		this.subspecies = subspecies;
 	}
 	
 }

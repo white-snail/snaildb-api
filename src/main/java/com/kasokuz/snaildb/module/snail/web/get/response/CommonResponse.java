@@ -1,6 +1,6 @@
 package com.kasokuz.snaildb.module.snail.web.get.response;
 
-public class CommonResponse {
+public abstract class CommonResponse {
 
 	public Integer id;
 	
@@ -10,11 +10,18 @@ public class CommonResponse {
 	
 	public Integer taxonomyYear;
 	
+	public CommonResponse(Integer id, String name, com.kasokuz.snaildb.module.snail.entity.Taxonomer taxonomer, Integer taxonomyYear) {
+		this.id = id;
+		this.name = name;
+		this.taxonomer = new Taxonomer(taxonomer);
+		this.taxonomyYear = taxonomyYear;
+	}
+	
 	public static class Taxonomer {
 		
-		public Integer id;
+		public final Integer id;
 		
-		public String surname;
+		public final String surname;
 		
 		public Taxonomer(com.kasokuz.snaildb.module.snail.entity.Taxonomer taxonomer) {
 			id = taxonomer.getTaxonomerId();
@@ -25,13 +32,13 @@ public class CommonResponse {
 	
 	public static class Child {
 		
-		public Integer id;
+		public final Integer id;
 		
-		public String name;
+		public final String name;
 		
-		public Taxonomer taxonomer;
+		public final Taxonomer taxonomer;
 		
-		public Integer taxonomerYear;
+		public final Integer taxonomerYear;
 		
 		public Child(Integer id, String name, com.kasokuz.snaildb.module.snail.entity.Taxonomer taxonomer, Integer taxonomerYear) {
 			this.id = id;

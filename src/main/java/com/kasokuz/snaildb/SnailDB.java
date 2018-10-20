@@ -17,7 +17,7 @@ public class SnailDB extends WebSecurityConfigurerAdapter implements WebMvcConfi
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/snail").permitAll();
+		http.authorizeRequests().antMatchers("/api").permitAll();
 	}
 
 }

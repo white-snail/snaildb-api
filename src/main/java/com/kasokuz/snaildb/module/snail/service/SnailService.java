@@ -61,6 +61,10 @@ public class SnailService {
 	
 	// GET BY ID
 	
+	public Taxonomer getTaxonomer(Integer taxonomerId) {
+		return taxonomerRepository.findByTaxonomerId(taxonomerId);
+	}
+	
 	public Superfamily getSuperfamily(Integer superfamilyId) {
 		return superfamilyRepository.findBySuperfamilyId(superfamilyId);
 	}
@@ -82,6 +86,10 @@ public class SnailService {
 	}
 	
 	// GET BY NAME
+	
+	public Taxonomer getTaxonomer(String surname) {
+		return taxonomerRepository.findBySurnameIgnoreCase(surname);
+	}
 
 	public Superfamily getSuperfamily(String superfamily) {
 		return superfamilyRepository.findByName(superfamily);

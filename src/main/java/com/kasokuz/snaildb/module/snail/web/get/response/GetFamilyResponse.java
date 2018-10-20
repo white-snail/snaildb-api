@@ -5,13 +5,10 @@ import java.util.List;
 
 public class GetFamilyResponse extends CommonResponse {
 
-	public List<Child> genuses = new ArrayList<>();
+	public final List<Child> genuses = new ArrayList<>();
 	
 	public GetFamilyResponse(com.kasokuz.snaildb.module.snail.entity.Family family) {
-		id = family.getFamilyId();
-		name = family.getName();
-		taxonomer = new Taxonomer(family.getTaxonomer());
-		taxonomyYear = family.getTaxonomyYear();
+		super(family.getFamilyId(), family.getName(), family.getTaxonomer(), family.getTaxonomyYear());
 		for(com.kasokuz.snaildb.module.snail.entity.Genus genus : family.getGenuses()) {
 			genuses.add(new Child(genus.getGenusId(), genus.getName(), genus.getTaxonomer(), genus.getTaxonomyYear()));
 		}

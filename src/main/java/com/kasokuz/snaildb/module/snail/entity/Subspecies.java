@@ -2,12 +2,9 @@ package com.kasokuz.snaildb.module.snail.entity;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kasokuz.snaildb.module.snail.utils.NameMapper;
-
 @Entity
 @Table(name = "snail_subspecies")
-public class Subspecies implements NameMapper.Mappable {
+public class Subspecies {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,8 +35,7 @@ public class Subspecies implements NameMapper.Mappable {
 	
 	@Column(nullable = false)
 	private Integer maxWidth;
-
-	@JsonProperty("id")
+	
 	public Integer getSubspeciesId() {
 		return subspeciesId;
 	}
@@ -56,7 +52,6 @@ public class Subspecies implements NameMapper.Mappable {
 		this.species = species;
 	}
 
-	@Override
 	public String getName() {
 		return name;
 	}

@@ -4,13 +4,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kasokuz.snaildb.module.snail.utils.NameMapper;
-
 @Entity
 @Table(name = "snail_genus")
-public class Genus implements NameMapper.Mappable {
+public class Genus {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +16,7 @@ public class Genus implements NameMapper.Mappable {
 	@JoinColumn(name = "family_id")
 	private Family family;
 	
-	@OneToMany(mappedBy = "genus")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "genus")
 	private List<Species> species;
 	
 	@Column(nullable = false)
@@ -32,8 +28,7 @@ public class Genus implements NameMapper.Mappable {
 	
 	@Column(nullable = false)
 	private Integer taxonomyYear;
-
-	@JsonProperty("id")
+	
 	public Integer getGenusId() {
 		return genusId;
 	}
@@ -50,7 +45,6 @@ public class Genus implements NameMapper.Mappable {
 		this.family = family;
 	}
 
-	@JsonIgnore
 	public List<Species> getSpecies() {
 		return species;
 	}
@@ -58,8 +52,7 @@ public class Genus implements NameMapper.Mappable {
 	public void setSpecies(List<Species> species) {
 		this.species = species;
 	}
-
-	@Override
+	
 	public String getName() {
 		return name;
 	}
