@@ -7,6 +7,8 @@ import com.kasokuz.snaildb.module.snail.entity.Subspecies;
 
 public interface SubspeciesRepository extends CrudRepository<Subspecies, Integer> {
 	
+	public Subspecies findBySubspeciesId(Integer subspeciesId);
+	
 	public Subspecies findByNameAndSpecies(String name, Species species);
 
 }

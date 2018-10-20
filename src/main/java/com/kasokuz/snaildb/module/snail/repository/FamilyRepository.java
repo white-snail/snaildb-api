@@ -6,6 +6,8 @@ import com.kasokuz.snaildb.module.snail.entity.Family;
 import com.kasokuz.snaildb.module.snail.entity.Superfamily;
 
 public interface FamilyRepository extends CrudRepository<Family, Integer> {
+	
+	public Family findByFamilyId(Integer familyId);
 
 	public Family findByNameAndSuperfamily(String name, Superfamily superfamily);
 	

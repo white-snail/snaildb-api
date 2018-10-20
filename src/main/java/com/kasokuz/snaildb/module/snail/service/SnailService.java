@@ -58,6 +58,30 @@ public class SnailService {
 	public Iterable<Superfamily> getSuperfamilies() {
 		return superfamilyRepository.findAll();
 	}
+	
+	// GET BY ID
+	
+	public Superfamily getSuperfamily(Integer superfamilyId) {
+		return superfamilyRepository.findBySuperfamilyId(superfamilyId);
+	}
+	
+	public Family getFamily(Integer familyId) {
+		return familyRepository.findByFamilyId(familyId);
+	}
+	
+	public Genus getGenus(Integer genusId) {
+		return genusRepository.findByGenusId(genusId);
+	}
+	
+	public Species getSpecies(Integer speciesId) {
+		return speciesRepository.findBySpeciesId(speciesId);
+	}
+	
+	public Subspecies getSubspecies(Integer subspeciesId) {
+		return subspeciesRepository.findBySubspeciesId(subspeciesId);
+	}
+	
+	// GET BY NAME
 
 	public Superfamily getSuperfamily(String superfamily) {
 		return superfamilyRepository.findByName(superfamily);

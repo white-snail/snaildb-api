@@ -6,6 +6,8 @@ import com.kasokuz.snaildb.module.snail.entity.Genus;
 import com.kasokuz.snaildb.module.snail.entity.Species;
 
 public interface SpeciesRepository extends CrudRepository<Species, Integer> {
+	
+	public Species findBySpeciesId(Integer speciesId);
 
 	public Species findByNameAndGenus(String name, Genus genus);
 	

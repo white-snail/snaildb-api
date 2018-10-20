@@ -1,3 +1,4 @@
+use snaildb;
 
 create table snail_taxonomer (
 	taxonomer_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
