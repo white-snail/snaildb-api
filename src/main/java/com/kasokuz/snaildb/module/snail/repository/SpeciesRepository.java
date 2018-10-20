@@ -11,4 +11,6 @@ public interface SpeciesRepository extends CrudRepository<Species, Integer> {
 
 	public Species findByNameAndGenus(String name, Genus genus);
 	
+	public Iterable<Species> findByNameContaining(String name);
+	
 }

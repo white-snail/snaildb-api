@@ -111,6 +111,28 @@ public class SnailService {
 		return subspeciesRepository.findByNameAndSpecies(subspecies, getSpecies(species, superfamily, family, genus));
 	}
 	
+	// SEARCH
+	
+	public Iterable<Superfamily> searchSuperfamilies(String query) {
+		return superfamilyRepository.findByNameContaining(query);
+	}
+	
+	public Iterable<Family> searchFamilies(String query) {
+		return familyRepository.findByNameContaining(query);
+	}
+	
+	public Iterable<Genus> searchGenuses(String query) {
+		return genusRepository.findByNameContaining(query);
+	}
+	
+	public Iterable<Species> searchSpecies(String query) {
+		return speciesRepository.findByNameContaining(query);
+	}
+	
+	public Iterable<Subspecies> searchSubspecies(String query) {
+		return subspeciesRepository.findByNameContaining(query);
+	}
+	
 	// DELETE
 	
 	public void deleteTaxonomer(Integer taxonomerId) {

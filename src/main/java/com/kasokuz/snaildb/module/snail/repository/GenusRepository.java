@@ -10,5 +10,7 @@ public interface GenusRepository extends CrudRepository<Genus, Integer> {
 	public Genus findByGenusId(Integer genusId);
 	
 	public Genus findByNameAndFamily(String name, Family family);
+	
+	public Iterable<Genus> findByNameContaining(String name);
 
 }

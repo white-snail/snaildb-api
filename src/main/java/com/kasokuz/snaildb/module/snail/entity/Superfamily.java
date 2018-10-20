@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.kasokuz.snaildb.module.snail.utils.IdNameInterface;
+
 @Entity
 @Table(name = "snail_superfamily")
-public class Superfamily {
+public class Superfamily implements IdNameInterface {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +26,11 @@ public class Superfamily {
 	
 	@Column(nullable = false)
 	private Integer taxonomyYear;
+	
+	@Override
+	public Integer getId() {
+		return superfamilyId;
+	}
 
 	public Integer getSuperfamilyId() {
 		return superfamilyId;
@@ -41,6 +48,7 @@ public class Superfamily {
 		this.families = families;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}

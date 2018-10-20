@@ -9,5 +9,7 @@ public interface SuperfamilyRepository extends CrudRepository<Superfamily, Integ
 	public Superfamily findBySuperfamilyId(Integer superfamilyId);
 	
 	public Superfamily findByName(String name);
+	
+	public Iterable<Superfamily> findByNameContaining(String name);
 
 }

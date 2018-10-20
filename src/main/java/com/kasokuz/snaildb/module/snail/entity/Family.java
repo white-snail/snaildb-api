@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.kasokuz.snaildb.module.snail.utils.IdNameInterface;
+
 @Entity
 @Table(name = "snail_family")
-public class Family {
+public class Family implements IdNameInterface {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +30,11 @@ public class Family {
 	
 	@Column(nullable = false)
 	private Integer taxonomyYear;
+	
+	@Override
+	public Integer getId() {
+		return familyId;
+	}
 
 	public Integer getFamilyId() {
 		return familyId;
@@ -53,6 +60,7 @@ public class Family {
 		this.genuses = genuses;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}

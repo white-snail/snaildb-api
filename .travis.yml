@@ -8,5 +8,5 @@ services:
 
 before_install:
   - mysql -e 'create database snaildb'
-  - mysql -e 'use snaildb'
+  - echo "spring.profiles.active=travis" > src/main/resources/application.properties
   - cat src/main/resources/db/init/*.sql | mysql

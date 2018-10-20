@@ -38,13 +38,13 @@ public abstract class CommonResponse {
 		
 		public final Taxonomer taxonomer;
 		
-		public final Integer taxonomerYear;
+		public final Integer taxonomyYear;
 		
-		public Child(Integer id, String name, com.kasokuz.snaildb.module.snail.entity.Taxonomer taxonomer, Integer taxonomerYear) {
+		public Child(Integer id, String name, com.kasokuz.snaildb.module.snail.entity.Taxonomer taxonomer, Integer taxonomyYear) {
 			this.id = id;
 			this.name = name;
 			this.taxonomer = new Taxonomer(taxonomer);
-			this.taxonomerYear = taxonomerYear;
+			this.taxonomyYear = taxonomyYear;
 		}
 		
 	}

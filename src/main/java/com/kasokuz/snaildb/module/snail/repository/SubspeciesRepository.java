@@ -10,5 +10,7 @@ public interface SubspeciesRepository extends CrudRepository<Subspecies, Integer
 	public Subspecies findBySubspeciesId(Integer subspeciesId);
 	
 	public Subspecies findByNameAndSpecies(String name, Species species);
+	
+	public Iterable<Subspecies> findByNameContaining(String name);
 
 }

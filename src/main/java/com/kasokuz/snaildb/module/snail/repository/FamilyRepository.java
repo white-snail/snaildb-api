@@ -11,4 +11,6 @@ public interface FamilyRepository extends CrudRepository<Family, Integer> {
 
 	public Family findByNameAndSuperfamily(String name, Superfamily superfamily);
 	
+	public Iterable<Family> findByNameContaining(String name);
+	
 }
