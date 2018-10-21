@@ -1,9 +1,11 @@
 package com.kasokuz.snaildb.module.snail.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kasokuz.snaildb.module.snail.entity.*;
+import com.kasokuz.snaildb.module.snail.dto.*;
 import com.kasokuz.snaildb.module.snail.repository.*;
 
 @Service
@@ -29,26 +31,32 @@ public class SnailService {
 	
 	// SAVE
 	
+	@Transactional
 	public Taxonomer saveTaxonomer(Taxonomer taxonomer) {
 		return taxonomerRepository.save(taxonomer);
 	}
 
+	@Transactional
 	public Superfamily saveSuperfamily(Superfamily superfamily) {
 		return superfamilyRepository.save(superfamily);
 	}
 
+	@Transactional
 	public Family saveFamily(Family family) {
 		return familyRepository.save(family);
 	}
 	
+	@Transactional
 	public Genus saveGenus(Genus genus) {
 		return genusRepository.save(genus);
 	}
 
+	@Transactional
 	public Species saveSpecies(Species species) {
 		return speciesRepository.save(species);
 	}
 
+	@Transactional
 	public Subspecies saveSubspecies(Subspecies subspecies) {
 		return subspeciesRepository.save(subspecies);
 	}
@@ -135,26 +143,32 @@ public class SnailService {
 	
 	// DELETE
 	
+	@Transactional
 	public void deleteTaxonomer(Integer taxonomerId) {
 		taxonomerRepository.deleteById(taxonomerId);
 	}
-
+	
+	@Transactional
 	public void deleteSuperfamily(Integer superfamilyId) {
 		superfamilyRepository.deleteById(superfamilyId);
 	}
 	
+	@Transactional
 	public void deleteFamily(Integer familyId) {
 		familyRepository.deleteById(familyId);
 	}
 	
+	@Transactional
 	public void deleteGenus(Integer genusId) {
 		genusRepository.deleteById(genusId);
 	}
 	
+	@Transactional
 	public void deleteSpecies(Integer speciesId) {
 		speciesRepository.deleteById(speciesId);
 	}
 	
+	@Transactional
 	public void deleteSubspecies(Integer subspeciesId) {
 		subspeciesRepository.deleteById(subspeciesId);
 	}

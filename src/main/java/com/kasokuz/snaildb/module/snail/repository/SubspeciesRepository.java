@@ -2,8 +2,8 @@ package com.kasokuz.snaildb.module.snail.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.kasokuz.snaildb.module.snail.entity.Species;
-import com.kasokuz.snaildb.module.snail.entity.Subspecies;
+import com.kasokuz.snaildb.module.snail.dto.Species;
+import com.kasokuz.snaildb.module.snail.dto.Subspecies;
 
 public interface SubspeciesRepository extends CrudRepository<Subspecies, Integer> {
 	

@@ -2,6 +2,7 @@ package com.kasokuz.snaildb.module.snail.web.search;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +13,8 @@ import com.kasokuz.snaildb.module.snail.web.search.response.SearchResponse;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
-@RequestMapping("api/searchsnail")
+@CrossOrigin(origins = "*")
+@RequestMapping("searchsnail")
 public class SearchSnailController {
 	
 	@Autowired

@@ -1,4 +1,4 @@
-package com.kasokuz.snaildb.module.snail.entity;
+package com.kasokuz.snaildb.module.snail.dto;
 
 import java.util.List;
 

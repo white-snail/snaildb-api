@@ -3,7 +3,7 @@ package com.kasokuz.snaildb.module.snail.web.search.response;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.kasokuz.snaildb.module.snail.entity.*;
+import com.kasokuz.snaildb.module.snail.dto.*;
 import com.kasokuz.snaildb.module.snail.utils.IdNameInterface;
 
 public class SearchResponse {

@@ -10,7 +10,7 @@ public abstract class CommonResponse {
 	
 	public Integer taxonomyYear;
 	
-	public CommonResponse(Integer id, String name, com.kasokuz.snaildb.module.snail.entity.Taxonomer taxonomer, Integer taxonomyYear) {
+	public CommonResponse(Integer id, String name, com.kasokuz.snaildb.module.snail.dto.Taxonomer taxonomer, Integer taxonomyYear) {
 		this.id = id;
 		this.name = name;
 		this.taxonomer = new Taxonomer(taxonomer);
@@ -23,7 +23,7 @@ public abstract class CommonResponse {
 		
 		public final String surname;
 		
-		public Taxonomer(com.kasokuz.snaildb.module.snail.entity.Taxonomer taxonomer) {
+		public Taxonomer(com.kasokuz.snaildb.module.snail.dto.Taxonomer taxonomer) {
 			id = taxonomer.getTaxonomerId();
 			surname = taxonomer.getSurname();
 		}
@@ -40,7 +40,7 @@ public abstract class CommonResponse {
 		
 		public final Integer taxonomyYear;
 		
-		public Child(Integer id, String name, com.kasokuz.snaildb.module.snail.entity.Taxonomer taxonomer, Integer taxonomyYear) {
+		public Child(Integer id, String name, com.kasokuz.snaildb.module.snail.dto.Taxonomer taxonomer, Integer taxonomyYear) {
 			this.id = id;
 			this.name = name;
 			this.taxonomer = new Taxonomer(taxonomer);

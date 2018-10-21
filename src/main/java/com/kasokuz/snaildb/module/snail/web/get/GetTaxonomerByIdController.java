@@ -2,6 +2,7 @@ package com.kasokuz.snaildb.module.snail.web.get;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,8 @@ import com.kasokuz.snaildb.module.snail.web.Result;
 import com.kasokuz.snaildb.module.snail.web.get.response.GetTaxonomerResponse;
 
 @RestController
-@RequestMapping("api/gettaxonomerbyid")
+@CrossOrigin(origins = "*")
+@RequestMapping("gettaxonomerbyid")
 public class GetTaxonomerByIdController {
 	
 	@Autowired

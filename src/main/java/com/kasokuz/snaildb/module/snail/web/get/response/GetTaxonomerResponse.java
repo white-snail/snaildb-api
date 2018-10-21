@@ -3,7 +3,7 @@ package com.kasokuz.snaildb.module.snail.web.get.response;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.kasokuz.snaildb.module.snail.entity.*;
+import com.kasokuz.snaildb.module.snail.dto.*;
 
 public class GetTaxonomerResponse {
 	

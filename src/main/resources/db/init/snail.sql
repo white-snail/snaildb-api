@@ -51,10 +51,10 @@ create table snail_subspecies (
 	name varchar(255) NOT NULL,
 	taxonomer_id int NOT NULL,
 	taxonomy_year int NOT NULL,
-	min_height int NOT NULL,
-	max_height int NOT NULL,
-	min_width int NOT NULL,
-	max_width int NOT NULL,
+	min_height int,
+	max_height int,
+	min_width int,
+	max_width int,
 	FOREIGN KEY(species_id) REFERENCES snail_species(species_id) ON DELETE CASCADE,
 	FOREIGN KEY(taxonomer_id) REFERENCES snail_taxonomer(taxonomer_id)
 );

@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.kasokuz.snaildb.module.snail.entity.*;
+import com.kasokuz.snaildb.module.snail.dto.*;
 import com.kasokuz.snaildb.module.snail.service.SnailService;
 
 @SpringBootTest
