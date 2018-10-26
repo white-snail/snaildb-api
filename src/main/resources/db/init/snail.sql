@@ -55,6 +55,8 @@ create table snail_subspecies (
 	max_height int,
 	min_width int,
 	max_width int,
+	extinct boolean NOT NULL DEFAULT false,
+	viviparous boolean NOT NULL DEFAULT false,
 	FOREIGN KEY(species_id) REFERENCES snail_species(species_id) ON DELETE CASCADE,
 	FOREIGN KEY(taxonomer_id) REFERENCES snail_taxonomer(taxonomer_id)
 );

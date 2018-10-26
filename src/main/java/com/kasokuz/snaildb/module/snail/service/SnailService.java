@@ -141,6 +141,12 @@ public class SnailService {
 		return subspeciesRepository.findByNameContaining(query);
 	}
 	
+	// COUNT
+	
+	public Long countSubspecies() {
+		return subspeciesRepository.count();
+	}
+	
 	// DELETE
 	
 	@Transactional

@@ -4,12 +4,16 @@ public class GetSubspeciesResponse extends CommonResponse {
 	
 	public final Integer minHeight, maxHeight, minWidth, maxWidth;
 	
+	public final Boolean extinct, viviparous;
+	
 	public GetSubspeciesResponse(com.kasokuz.snaildb.module.snail.dto.Subspecies subspecies) {
 		super(subspecies.getSubspeciesId(), subspecies.getName(), subspecies.getTaxonomer(), subspecies.getTaxonomyYear());
 		minHeight = subspecies.getMinHeight();
 		maxHeight = subspecies.getMaxHeight();
 		minWidth = subspecies.getMinWidth();
 		maxWidth = subspecies.getMaxWidth();
+		extinct = subspecies.getExtinct();
+		viviparous = subspecies.getViviparous();
 	}
 	
 	public static GetSubspeciesResponse from(com.kasokuz.snaildb.module.snail.dto.Subspecies subspecies) {

@@ -38,6 +38,12 @@ public class Subspecies implements IdNameInterface {
 	@Column(nullable = false)
 	private Integer maxWidth;
 	
+	@Column(nullable = false)
+	private Boolean extinct = false;
+	
+	@Column(nullable = false)
+	private Boolean viviparous = false;
+	
 	@Override
 	public Integer getId() {
 		return subspeciesId;
@@ -114,6 +120,22 @@ public class Subspecies implements IdNameInterface {
 
 	public void setMaxWidth(Integer maxWidth) {
 		this.maxWidth = maxWidth;
+	}
+
+	public Boolean getExtinct() {
+		return extinct;
+	}
+
+	public void setExtinct(Boolean extinct) {
+		this.extinct = extinct;
+	}
+
+	public Boolean getViviparous() {
+		return viviparous;
+	}
+
+	public void setViviparous(Boolean viviparous) {
+		this.viviparous = viviparous;
 	}
 
 }
