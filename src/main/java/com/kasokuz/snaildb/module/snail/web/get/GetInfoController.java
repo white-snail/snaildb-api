@@ -12,13 +12,13 @@ import com.kasokuz.snaildb.module.snail.web.get.response.GetTotalResponse;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("getinfo")
+@RequestMapping(value = "getinfo", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class GetInfoController {
 
 	@Autowired
 	private SnailService service;
 	
-	@GetMapping(value = "total", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(value = "total")
 	public GetTotalResponse getTotal() {
 		return new GetTotalResponse(service.countSubspecies());
 	}

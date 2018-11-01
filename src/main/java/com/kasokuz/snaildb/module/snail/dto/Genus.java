@@ -24,9 +24,9 @@ public class Genus implements IdNameInterface {
 	@Column(nullable = false)
 	private String name;
 	
-	@ManyToOne
-	@JoinColumn(name = "taxonomer_id")
-	private Taxonomer taxonomer;
+	@ManyToMany
+	@JoinTable(name = "snail_genus_taxonomer", joinColumns = @JoinColumn(name = "genus_id"), inverseJoinColumns = @JoinColumn(name = "taxonomer_id"))
+	private List<Taxonomer> taxonomers;
 	
 	@Column(nullable = false)
 	private Integer taxonomyYear;
@@ -69,12 +69,12 @@ public class Genus implements IdNameInterface {
 		this.name = name;
 	}
 
-	public Taxonomer getTaxonomer() {
-		return taxonomer;
+	public List<Taxonomer> getTaxonomers() {
+		return taxonomers;
 	}
 
-	public void setTaxonomer(Taxonomer taxonomer) {
-		this.taxonomer = taxonomer;
+	public void setTaxonomers(List<Taxonomer> taxonomers) {
+		this.taxonomers = taxonomers;
 	}
 
 	public Integer getTaxonomyYear() {

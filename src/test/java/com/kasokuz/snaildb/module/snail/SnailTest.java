@@ -42,35 +42,35 @@ public abstract class SnailTest {
 		
 		superfamily = new Superfamily();
 		superfamily.setName("achatinoidea");
-		superfamily.setTaxonomer(swainson);
+		superfamily.getTaxonomers().add(swainson);
 		superfamily.setTaxonomyYear(1840);
 		superfamily = service.saveSuperfamily(superfamily);
 		
 		family = new Family();
 		family.setSuperfamily(superfamily);
 		family.setName("achatinidae");
-		family.setTaxonomer(swainson);
+		family.getTaxonomers().add(swainson);
 		family.setTaxonomyYear(1840);
 		family = service.saveFamily(family);
 		
 		genus = new Genus();
 		genus.setFamily(family);
 		genus.setName("archachatina");
-		genus.setTaxonomer(albers);
+		genus.getTaxonomers().add(albers);
 		genus.setTaxonomyYear(1850);
 		genus = service.saveGenus(genus);
 		
 		species = new Species();
 		species.setGenus(genus);
 		species.setName("marginata");
-		species.setTaxonomer(swainson);
+		species.getTaxonomers().add(swainson);
 		species.setTaxonomyYear(1821);
 		species = service.saveSpecies(species);
 		
 		subspecies = new Subspecies();
 		subspecies.setSpecies(species);
 		subspecies.setName("depravata");
-		subspecies.setTaxonomer(philippi);
+		subspecies.getTaxonomers().add(philippi);
 		subspecies.setTaxonomyYear(1849);
 		subspecies.setMinHeight(110);
 		subspecies.setMaxHeight(110);

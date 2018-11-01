@@ -8,9 +8,9 @@ public class GetFamilyResponse extends CommonResponse {
 	public final List<Child> genuses = new ArrayList<>();
 	
 	public GetFamilyResponse(com.kasokuz.snaildb.module.snail.dto.Family family) {
-		super(family.getFamilyId(), family.getName(), family.getTaxonomer(), family.getTaxonomyYear());
+		super(family.getFamilyId(), family.getName(), family.getTaxonomers(), family.getTaxonomyYear());
 		for(com.kasokuz.snaildb.module.snail.dto.Genus genus : family.getGenuses()) {
-			genuses.add(new Child(genus.getGenusId(), genus.getName(), genus.getTaxonomer(), genus.getTaxonomyYear()));
+			genuses.add(new Child(genus.getGenusId(), genus.getName(), genus.getTaxonomers(), genus.getTaxonomyYear()));
 		}
 	}
 	

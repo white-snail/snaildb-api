@@ -1,7 +1,5 @@
 package com.kasokuz.snaildb.module.account.dto;
 
-import java.util.List;
-
 import javax.persistence.*;
 
 @Entity
@@ -18,10 +16,6 @@ public class User {
 	private String name;
 	
 	private String surname;
-	
-	@ManyToMany
-	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private List<Role> roles;
 
 	public Integer getUserId() {
 		return userId;
@@ -53,14 +47,6 @@ public class User {
 
 	public void setSurname(String surname) {
 		this.surname = surname;
-	}
-
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
 	}
 	
 }

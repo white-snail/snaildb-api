@@ -16,13 +16,13 @@ import com.kasokuz.snaildb.module.snail.web.get.response.GetSuperfamilyResponse;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("getallsnails")
+@RequestMapping(value = "getallsnails", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class GetAllSnailsController {
 
 	@Autowired
 	private SnailService service;
 	
-	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(value = "")
 	public List<GetSuperfamilyResponse> getAll() {
 		List<GetSuperfamilyResponse> response = new ArrayList<>();
 		for(Superfamily superfamily : service.getSuperfamilies()) {

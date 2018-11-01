@@ -18,19 +18,19 @@ public class Taxonomer {
 	@Column(nullable = false)
 	private String surname;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "taxonomer")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "taxonomers")
 	private List<Superfamily> superfamilies;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "taxonomer")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "taxonomers")
 	private List<Family> families;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "taxonomer")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "taxonomers")
 	private List<Genus> genuses;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "taxonomer")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "taxonomers")
 	private List<Species> species;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "taxonomer")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "taxonomers")
 	private List<Subspecies> subspecies;
 	
 	public Integer getTaxonomerId() {

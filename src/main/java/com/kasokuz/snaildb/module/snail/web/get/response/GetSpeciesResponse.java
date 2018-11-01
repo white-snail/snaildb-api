@@ -8,7 +8,7 @@ public class GetSpeciesResponse extends CommonResponse {
 	public final List<GetSubspeciesResponse> subspecies = new ArrayList<>();
 	
 	public GetSpeciesResponse(com.kasokuz.snaildb.module.snail.dto.Species species) {
-		super(species.getSpeciesId(), species.getName(), species.getTaxonomer(), species.getTaxonomyYear());
+		super(species.getSpeciesId(), species.getName(), species.getTaxonomers(), species.getTaxonomyYear());
 		for(com.kasokuz.snaildb.module.snail.dto.Subspecies subspecies : species.getSubspecies()) {
 			this.subspecies.add(new GetSubspeciesResponse(subspecies));
 		}

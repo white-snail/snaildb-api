@@ -14,13 +14,13 @@ import com.kasokuz.snaildb.module.snail.web.get.response.GetTaxonomerResponse;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("gettaxonomerbyid")
+@RequestMapping(value = "gettaxonomerbyid", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class GetTaxonomerByIdController {
 	
 	@Autowired
 	private SnailService service;
 
-	@GetMapping(value = "{taxonomerId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(value = "{taxonomerId}")
 	public Result<GetTaxonomerResponse> getTaxonomer(@PathVariable Integer taxonomerId) {
 		return new Result<>(GetTaxonomerResponse.from(service.getTaxonomer(taxonomerId)));
 	}

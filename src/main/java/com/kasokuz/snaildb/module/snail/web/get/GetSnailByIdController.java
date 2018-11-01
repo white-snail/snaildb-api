@@ -14,33 +14,33 @@ import com.kasokuz.snaildb.module.snail.web.get.response.*;;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("getsnailbyid")
+@RequestMapping(value = "getsnailbyid", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class GetSnailByIdController {
 
 	@Autowired
 	private SnailService service;
 	
-	@GetMapping(value = "superfamily/{superfamilyId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(value = "superfamily/{superfamilyId}")
 	public Result<GetSuperfamilyResponse> getSuperfamily(@PathVariable Integer superfamilyId) {
 		return new Result<>(GetSuperfamilyResponse.from(service.getSuperfamily(superfamilyId)));
 	}
 	
-	@GetMapping(value = "family/{familyId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(value = "family/{familyId}")
 	public Result<GetFamilyResponse> getFamily(@PathVariable Integer familyId) {
 		return new Result<>(GetFamilyResponse.from(service.getFamily(familyId)));
 	}
 	
-	@GetMapping(value = "genus/{genusId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(value = "genus/{genusId}")
 	public Result<GetGenusResponse> getGenus(@PathVariable Integer genusId) {
 		return new Result<>(GetGenusResponse.from(service.getGenus(genusId)));
 	}
 	
-	@GetMapping(value = "species/{speciesId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(value = "species/{speciesId}")
 	public Result<GetSpeciesResponse> getSpecies(@PathVariable Integer speciesId) {
 		return new Result<>(GetSpeciesResponse.from(service.getSpecies(speciesId)));
 	}
 	
-	@GetMapping(value = "subspecies/{subspeciesId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(value = "subspecies/{subspeciesId}")
 	public Result<GetSubspeciesResponse> getSubspecies(@PathVariable Integer subspeciesId) {
 		return new Result<>(GetSubspeciesResponse.from(service.getSubspecies(subspeciesId)));
 	}

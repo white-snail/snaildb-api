@@ -67,6 +67,10 @@ public class SnailService {
 		return superfamilyRepository.findAll();
 	}
 	
+	public Subspecies getRandomSubspecies() {
+		return subspeciesRepository.findRandom();
+	}
+	
 	// GET BY ID
 	
 	public Taxonomer getTaxonomer(Integer taxonomerId) {
