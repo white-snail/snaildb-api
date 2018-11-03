@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Administration panel</title>
+		<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+		<script src="util.js"></script>
+		<script>
+			window.onload = () => {
+				get("getalltaxonomers", (data) => {
+					data.sort((a, b) => { return a.surname.localeCompare(b.surname) });
+					for(var i in data) {
+						const t = data[i];
+						const option = `<option value="${t.id}">${t.surname}, ${t.name}</option>`;
+						$("taxonomer-delete").innerHTML += option;
+						$("superfamily-taxonomers").innerHTML += option;
+						$("family-taxonomers").innerHTML += option;
+						$("genus-taxonomers").innerHTML += option;
+						$("species-taxonomers").innerHTML += option;
+						$("subspecies-taxonomers").innerHTML += option;
+					}
+				});
+				get("getallsnails/superfamilies", (data) => {
+					for(var i in data) {
+						const t = data[i];
+						const option = `<option value="${t.id}">${t.name}</option>`;
+						$("superfamily-delete").innerHTML += option;
+						$("family-superfamily").innerHTML += option;
+					}
+				});
+				get("getallsnails/families", (data) => {
+					for(var i in data) {
+						const t = data[i];
+						const option = `<option value="${t.id}">${t.name}</option>`;
+						$("family-delete").innerHTML += option;
+						$("genus-family").innerHTML += option;
+					}
+				});
+				get("getallsnails/genuses", (data) => {
+					for(var i in data) {
+						const t = data[i];
+						const option = `<option value="${t.id}">${t.name}</option>`;
+						$("genus-delete").innerHTML += option;
+						$("species-genus").innerHTML += option;
+					}
+				});
+				get("getallsnails/species", (data) => {
+					for(var i in data) {
+						const t = data[i];
+						const option = `<option value="${t.id}">${t.name}</option>`;
+						$("species-delete").innerHTML += option;
+						$("subspecies-species").innerHTML += option;
+					}
+				});
+				get("getallsnails/subspecies", (data) => {
+					for(var i in data) {
+						const t = data[i];
+						$("subspecies-delete").innerHTML += `<option value="${t.id}">${t.name}</option>`;
+					}
+				});
+			};
+			
+			function addTaxonomer() {
+				post("settaxonomer/edit", "id=" + $("taxonomer-id").value + "&name=" + $("taxonomer-name").value + "&surname=" + $("taxonomer-surname").value);
+			}
+			function editTaxonomer() {
+				get(
+					"gettaxonomerbyid/" + $("taxonomer-delete").value,
+					(data) => {
+						$("taxonomer-id").value = data.result.id;
+						$("taxonomer-name").value = data.result.name;
+						$("taxonomer-surname").value = data.result.surname;
+						$("taxonomer-add-btn").innerText = "Edit";
+					}
+				);
+			}
+			function deleteTaxonomer() {
+				post("settaxonomer/delete", "id=" + $("taxonomer-delete").value);
+			}
+			
+			function addImpl(type, additional="") {
+				post(`set${type}/edit`, "id=" + $(type + "-id").value + "&name=" + $(type + "-name").value + "&taxonomers=" + select($(type + "-taxonomers")) + "&taxonomyYear=" + $(type + "-taxonomy-year").value + additional);
+			}
+			function editImpl(type, additional) {
+				get(
+					"getsnailbyid/" + type + "/" + $(type + "-delete").value,
+					(data) => {
+						$(type + "-id").value = data.result.id;
+						$(type + "-name").value = data.result.name;
+						selected($(type + "-taxonomers"), data.result.taxonomers);
+						$(type + "-taxonomy-year").value = data.result.taxonomyYear;
+						$(type + "-add-btn").innerText = "Edit";
+						if(additional) additional(data);
+					}
+				);
+			}
+			function deleteImpl(type) {
+				post(`set${type}/delete`, "id=" + $(type + "-delete").value);
+			}
+			
+			function addSubspecies() {
+				addImpl("subspecies", "&speciesId=" + $("subspecies-species").value + "&extinct=" + $("subspecies-extinct").checked);
+			}
+			function editSubspecies() {
+				editImpl("subspecies", (data) => {
+					$("subspecies-extinct").value = data.result.extinct;
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<div class="container grid-lg" style="margin-bottom:8px">
+			<h3>Taxonomers</h3>
+			<div class="columns">
+				<div class="column col-lg-6">
+					<input id="taxonomer-id" type="hidden" />
+					<div class="form-group">
+						<input id="taxonomer-name" class="form-input" placeholder="Name" />
+					</div>
+					<div class="form-group">
+						<input id="taxonomer-surname" class="form-input" placeholder="Surname" />
+					</div>
+					<button id="taxonomer-add-btn" class="btn float-right" onclick="addTaxonomer()">Add</button>
+				</div>
+				<div class="column col-lg-6">
+					<div class="form-group">
+						<select id="taxonomer-delete" class="form-select">
+							<option selected disabled hidden>Select a taxonomer</option>
+						</select>
+					</div>
+					<button class="btn float-right" onclick="deleteTaxonomer()">Delete</button>
+					<button class="btn float-right" onclick="editTaxonomer()" style="margin-right:8px">Edit</button>
+				</div>
+			</div>
+			<hr>
+			<h3>Superfamilies</h3>
+			<div class="columns">
+				<div class="column col-lg-6">
+					<input id="superfamily-id" type="hidden" />
+					<div class="form-group">
+						<input id="superfamily-name" class="form-input" placeholder="Name" />
+					</div>
+					<div class="form-group">
+						<select id="superfamily-taxonomers" class="form-select" placeholder="Taxonomers" multiple></select>
+					</div>
+					<div class="form-group">
+						<input id="superfamily-taxonomy-year" class="form-input" placeholder="Taxonomy year" />
+					</div>
+					<button id="superfamily-add-btn" class="btn float-right" onclick="addImpl('superfamily')">Add</button>
+				</div>
+				<div class="column col-lg-6">
+					<div class="form-group">
+						<select id="superfamily-delete" class="form-select">
+							<option selected disabled hidden>Select a superfamily</option>
+						</select>
+					</div>
+					<button class="btn float-right" onclick="deleteImpl('superfamily')">Delete</button>
+					<button class="btn float-right" onclick="editImpl('superfamily')" style="margin-right:8px">Edit</button>
+				</div>
+			</div>
+			<hr>
+			<h3>Families</h3>
+			<div class="columns">
+				<div class="column col-lg-6">
+					<input id="family-id" type="hidden" />
+					<div class="form-group">
+						<select id="family-superfamily" class="form-select">
+							<option selected disabled hidden>Superfamily</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<input id="family-name" class="form-input" placeholder="Name" />
+					</div>
+					<div class="form-group">
+						<select id="family-taxonomers" class="form-select" placeholder="Taxonomers" multiple></select>
+					</div>
+					<div class="form-group">
+						<input id="family-taxonomy-year" class="form-input" placeholder="Taxonomy year" />
+					</div>
+					<button id="family-add-btn" class="btn float-right" onclick="addImpl('family', '&superfamilyId=' + $('family-superfamily').value)">Add</button>
+				</div>
+				<div class="column col-lg-6">
+					<div class="form-group">
+						<select id="family-delete" class="form-select">
+							<option selected disabled hidden>Select a family</option>
+						</select>
+					</div>
+					<button class="btn float-right" onclick="deleteImpl('family')">Delete</button>
+					<button class="btn float-right" onclick="editImpl('family')" style="margin-right:8px">Edit</button>
+				</div>
+			</div>
+			<hr>
+			<h3>Genuses</h3>
+			<div class="columns">
+				<div class="column col-lg-6">
+					<input id="genus-id" type="hidden" />
+					<div class="form-group">
+						<select id="genus-family" class="form-select">
+							<option selected disabled hidden>Family</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<input id="genus-name" class="form-input" placeholder="Name" />
+					</div>
+					<div class="form-group">
+						<select id="genus-taxonomers" class="form-select" placeholder="Taxonomers" multiple></select>
+					</div>
+					<div class="form-group">
+						<input id="genus-taxonomy-year" class="form-input" placeholder="Taxonomy year" />
+					</div>
+					<button id="genus-add-btn" class="btn float-right" onclick="addImpl('genus', '&familyId=' + $('genus-family').value)">Add</button>
+				</div>
+				<div class="column col-lg-6">
+					<div class="form-group">
+						<select id="genus-delete" class="form-select">
+							<option selected disabled hidden>Select a genus</option>
+						</select>
+					</div>
+					<button class="btn float-right" onclick="deleteImpl('genus')">Delete</button>
+					<button class="btn float-right" onclick="editImpl('genus')" style="margin-right:8px">Edit</button>
+				</div>
+			</div>
+			<hr>
+			<h3>Species</h3>
+			<div class="columns">
+				<div class="column col-lg-6">
+					<input id="species-id" type="hidden" />
+					<div class="form-group">
+						<select id="species-genus" class="form-select">
+							<option selected disabled hidden>Family</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<input id="species-name" class="form-input" placeholder="Name" />
+					</div>
+					<div class="form-group">
+						<select id="species-taxonomers" class="form-select" placeholder="Taxonomers" multiple></select>
+					</div>
+					<div class="form-group">
+						<input id="species-taxonomy-year" class="form-input" placeholder="Taxonomy year" />
+					</div>
+					<button id="species-add-btn" class="btn float-right" onclick="addImpl('species', '&genusId=' + $('species-genus').value)">Add</button>
+				</div>
+				<div class="column col-lg-6">
+					<div class="form-group">
+						<select id="species-delete" class="form-select">
+							<option selected disabled hidden>Select a species</option>
+						</select>
+					</div>
+					<button class="btn float-right" onclick="deleteImpl('species')">Delete</button>
+					<button class="btn float-right" onclick="editImpl('species')" style="margin-right:8px">Edit</button>
+				</div>
+			</div>
+			<hr>
+			<h3>Subspecies</h3>
+			<div class="columns">
+				<div class="column col-lg-6">
+					<input id="subspecies-id" type="hidden" />
+					<div class="form-group">
+						<select id="subspecies-species" class="form-select">
+							<option selected disabled hidden>Family</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<input id="subspecies-name" class="form-input" placeholder="Name" />
+					</div>
+					<div class="form-group">
+						<select id="subspecies-taxonomers" class="form-select" placeholder="Taxonomers" multiple></select>
+					</div>
+					<div class="form-group">
+						<input id="subspecies-taxonomy-year" class="form-input" placeholder="Taxonomy year" />
+					</div>
+					<div class="form-group">
+						<input id="subspecies-min-height" class="form-input" placeholder="Min height" />
+					</div>
+					<div class="form-group">
+						<label class="form-checkbox">
+							<input id="subspecies-extinct" type="checkbox" />
+							<i class="form-icon"></i> Extinct
+						</label>
+					</div>
+					<button id="subspecies-add-btn" class="btn float-right" onclick="addSubspecies()">Add</button>
+				</div>
+				<div class="column col-lg-6">
+					<div class="form-group">
+						<select id="subspecies-delete" class="form-select">
+							<option selected disabled hidden>Select a subspecies</option>
+						</select>
+					</div>
+					<button class="btn float-right" onclick="deleteImpl('subspecies')">Delete</button>
+					<button class="btn float-right" onclick="editSubspecies()" style="margin-right:8px">Edit</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

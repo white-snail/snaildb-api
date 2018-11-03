@@ -1,4 +1,4 @@
-package com.kasokuz.snaildb.module.snail.web;
+package com.kasokuz.snaildb.module.snail.utils;
 
 public class Result<T> {
 	

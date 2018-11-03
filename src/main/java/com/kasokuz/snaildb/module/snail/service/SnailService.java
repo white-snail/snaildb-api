@@ -5,7 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kasokuz.snaildb.module.snail.dto.*;
+import com.kasokuz.snaildb.module.snail.domain.*;
 import com.kasokuz.snaildb.module.snail.repository.*;
 
 @Service
@@ -61,11 +61,33 @@ public class SnailService {
 		return subspeciesRepository.save(subspecies);
 	}
 	
-	// GET
+	// GET ALLL
+	
+	public Iterable<Taxonomer> getTaxonomers() {
+		return taxonomerRepository.findAll();
+	}
 	
 	public Iterable<Superfamily> getSuperfamilies() {
 		return superfamilyRepository.findAll();
 	}
+	
+	public Iterable<Family> getFamilies() {
+		return familyRepository.findAll();
+	}
+	
+	public Iterable<Genus> getGenuses() {
+		return genusRepository.findAll();
+	}
+	
+	public Iterable<Species> getSpecies() {
+		return speciesRepository.findAll();
+	}
+	
+	public Iterable<Subspecies> getSubspecies() {
+		return subspeciesRepository.findAll();
+	}
+	
+	// GET RANDOM
 	
 	public Subspecies getRandomSubspecies() {
 		return subspeciesRepository.findRandom();

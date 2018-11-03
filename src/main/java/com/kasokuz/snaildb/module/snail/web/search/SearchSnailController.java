@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kasokuz.snaildb.module.snail.dto.*;
+import com.kasokuz.snaildb.module.snail.domain.*;
 import com.kasokuz.snaildb.module.snail.service.SnailService;
 import com.kasokuz.snaildb.module.snail.web.search.response.SearchResponse;
 import com.kasokuz.snaildb.module.snail.web.search.response.SearchResponse.Child;

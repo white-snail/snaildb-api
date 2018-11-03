@@ -1,4 +1,4 @@
-package com.kasokuz.snaildb.module.snail.dto;
+package com.kasokuz.snaildb.module.snail.domain;
 
 import java.util.List;
 

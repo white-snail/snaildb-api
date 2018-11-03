@@ -1,5 +1,6 @@
-package com.kasokuz.snaildb.module.snail.dto;
+package com.kasokuz.snaildb.module.snail.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -22,7 +23,7 @@ public class Superfamily implements IdNameInterface {
 	
 	@ManyToMany
 	@JoinTable(name = "snail_superfamily_taxonomer", joinColumns = @JoinColumn(name = "superfamily_id"), inverseJoinColumns = @JoinColumn(name = "taxonomer_id"))
-	private List<Taxonomer> taxonomers;
+	private List<Taxonomer> taxonomers = new ArrayList<>();
 	
 	@Column(nullable = false)
 	private Integer taxonomyYear;

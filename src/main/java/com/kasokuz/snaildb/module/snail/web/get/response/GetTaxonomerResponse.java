@@ -3,9 +3,11 @@ package com.kasokuz.snaildb.module.snail.web.get.response;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.kasokuz.snaildb.module.snail.dto.*;
+import com.kasokuz.snaildb.module.snail.domain.*;
 
 public class GetTaxonomerResponse {
+	
+	public final Integer id;
 	
 	public final String name, surname;
 	
@@ -16,8 +18,9 @@ public class GetTaxonomerResponse {
 	public final List<Child> subspecies = new ArrayList<>();
 	
 	public GetTaxonomerResponse(Taxonomer taxonomer) {
-		name = taxonomer.getName();
-		surname = taxonomer.getSurname();
+		this.id = taxonomer.getTaxonomerId();
+		this.name = taxonomer.getName();
+		this.surname = taxonomer.getSurname();
 		for(Superfamily superfamily : taxonomer.getSuperfamilies()) this.superfamilies.add(new Child(superfamily.getSuperfamilyId(), superfamily.getName(), superfamily.getTaxonomyYear()));
 		for(Family family : taxonomer.getFamilies()) this.families.add(new Child(family.getFamilyId(), family.getName(), family.getTaxonomyYear()));
 		for(Genus genus : taxonomer.getGenuses()) this.genuses.add(new Child(genus.getGenusId(), genus.getName(), genus.getTaxonomyYear()));

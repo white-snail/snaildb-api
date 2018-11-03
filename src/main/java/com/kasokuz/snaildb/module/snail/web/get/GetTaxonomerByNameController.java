@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kasokuz.snaildb.module.snail.service.SnailService;
-import com.kasokuz.snaildb.module.snail.web.Result;
+import com.kasokuz.snaildb.module.snail.utils.Result;
 import com.kasokuz.snaildb.module.snail.web.get.response.GetTaxonomerResponse;
 
 @RestController

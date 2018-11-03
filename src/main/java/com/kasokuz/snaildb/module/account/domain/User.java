@@ -1,4 +1,4 @@
-package com.kasokuz.snaildb.module.account.dto;
+package com.kasokuz.snaildb.module.account.domain;
 
 import javax.persistence.*;
 
@@ -12,6 +12,9 @@ public class User {
 	
 	@Column(nullable = false)
 	private String username;
+	
+	@Column(nullable = false)
+	private byte[] password;
 	
 	private String name;
 	
@@ -31,6 +34,14 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public byte[] getPassword() {
+		return password;
+	}
+
+	public void setPassword(byte[] password) {
+		this.password = password;
 	}
 
 	public String getName() {

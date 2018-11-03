@@ -1,5 +1,6 @@
-package com.kasokuz.snaildb.module.snail.dto;
+package com.kasokuz.snaildb.module.snail.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -26,7 +27,7 @@ public class Genus implements IdNameInterface {
 	
 	@ManyToMany
 	@JoinTable(name = "snail_genus_taxonomer", joinColumns = @JoinColumn(name = "genus_id"), inverseJoinColumns = @JoinColumn(name = "taxonomer_id"))
-	private List<Taxonomer> taxonomers;
+	private List<Taxonomer> taxonomers = new ArrayList<>();
 	
 	@Column(nullable = false)
 	private Integer taxonomyYear;

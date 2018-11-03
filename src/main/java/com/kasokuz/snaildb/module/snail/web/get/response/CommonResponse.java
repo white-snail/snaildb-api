@@ -13,10 +13,10 @@ public abstract class CommonResponse {
 	
 	public Integer taxonomyYear;
 	
-	public CommonResponse(Integer id, String name, List<com.kasokuz.snaildb.module.snail.dto.Taxonomer> taxonomers, Integer taxonomyYear) {
+	public CommonResponse(Integer id, String name, List<com.kasokuz.snaildb.module.snail.domain.Taxonomer> taxonomers, Integer taxonomyYear) {
 		this.id = id;
 		this.name = name;
-		for(com.kasokuz.snaildb.module.snail.dto.Taxonomer taxonomer : taxonomers) this.taxonomers.add(new Taxonomer(taxonomer));
+		for(com.kasokuz.snaildb.module.snail.domain.Taxonomer taxonomer : taxonomers) this.taxonomers.add(new Taxonomer(taxonomer));
 		this.taxonomyYear = taxonomyYear;
 	}
 	
@@ -26,7 +26,7 @@ public abstract class CommonResponse {
 		
 		public final String surname;
 		
-		public Taxonomer(com.kasokuz.snaildb.module.snail.dto.Taxonomer taxonomer) {
+		public Taxonomer(com.kasokuz.snaildb.module.snail.domain.Taxonomer taxonomer) {
 			id = taxonomer.getTaxonomerId();
 			surname = taxonomer.getSurname();
 		}
@@ -43,10 +43,10 @@ public abstract class CommonResponse {
 		
 		public final Integer taxonomyYear;
 		
-		public Child(Integer id, String name, List<com.kasokuz.snaildb.module.snail.dto.Taxonomer> taxonomers, Integer taxonomyYear) {
+		public Child(Integer id, String name, List<com.kasokuz.snaildb.module.snail.domain.Taxonomer> taxonomers, Integer taxonomyYear) {
 			this.id = id;
 			this.name = name;
-			for(com.kasokuz.snaildb.module.snail.dto.Taxonomer taxonomer : taxonomers) this.taxonomers.add(new Taxonomer(taxonomer));
+			for(com.kasokuz.snaildb.module.snail.domain.Taxonomer taxonomer : taxonomers) this.taxonomers.add(new Taxonomer(taxonomer));
 			this.taxonomyYear = taxonomyYear;
 		}
 		

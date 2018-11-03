@@ -2,7 +2,7 @@ package com.kasokuz.snaildb.module.snail.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.kasokuz.snaildb.module.snail.dto.Superfamily;
+import com.kasokuz.snaildb.module.snail.domain.Superfamily;
 
 public interface SuperfamilyRepository extends CrudRepository<Superfamily, Integer> {
 	

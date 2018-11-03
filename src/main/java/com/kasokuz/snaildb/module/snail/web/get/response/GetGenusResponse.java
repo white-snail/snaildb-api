@@ -7,14 +7,14 @@ public class GetGenusResponse extends CommonResponse {
 	
 	public final List<Child> species = new ArrayList<>();
 	
-	public GetGenusResponse(com.kasokuz.snaildb.module.snail.dto.Genus genus) {
+	public GetGenusResponse(com.kasokuz.snaildb.module.snail.domain.Genus genus) {
 		super(genus.getGenusId(), genus.getName(), genus.getTaxonomers(), genus.getTaxonomyYear());
-		for(com.kasokuz.snaildb.module.snail.dto.Species species : genus.getSpecies()) {
+		for(com.kasokuz.snaildb.module.snail.domain.Species species : genus.getSpecies()) {
 			this.species.add(new Child(species.getSpeciesId(), species.getName(), species.getTaxonomers(), species.getTaxonomyYear()));
 		}
 	}
 	
-	public static GetGenusResponse from(com.kasokuz.snaildb.module.snail.dto.Genus genus) {
+	public static GetGenusResponse from(com.kasokuz.snaildb.module.snail.domain.Genus genus) {
 		if(genus == null) return null;
 		else return new GetGenusResponse(genus);
 	}
