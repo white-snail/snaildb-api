@@ -29,23 +29,20 @@ public class Subspecies implements IdNameInterface {
 	@Column(nullable = false)
 	private Integer taxonomyYear;
 	
-	@Column(nullable = false)
 	private Integer minHeight;
 	
-	@Column(nullable = false)
 	private Integer maxHeight;
 	
-	@Column(nullable = false)
 	private Integer minWidth;
 	
-	@Column(nullable = false)
 	private Integer maxWidth;
-	
+
 	@Column(nullable = false)
 	private Boolean extinct = false;
 	
-	@Column(nullable = false)
-	private Boolean viviparous = false;
+	private Boolean viviparous;
+	
+	private String location;
 	
 	@Override
 	public Integer getId() {
@@ -139,6 +136,14 @@ public class Subspecies implements IdNameInterface {
 
 	public void setViviparous(Boolean viviparous) {
 		this.viviparous = viviparous;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 }

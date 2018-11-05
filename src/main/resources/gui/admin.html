@@ -59,7 +59,8 @@
 					}
 				});
 			};
-			
+		</script>
+		<script>
 			function addTaxonomer() {
 				post("settaxonomer/edit", "id=" + $("taxonomer-id").value + "&name=" + $("taxonomer-name").value + "&surname=" + $("taxonomer-surname").value);
 			}
@@ -99,7 +100,13 @@
 			}
 			
 			function addSubspecies() {
-				addImpl("subspecies", "&speciesId=" + $("subspecies-species").value + "&extinct=" + $("subspecies-extinct").checked);
+				addImpl("subspecies", "&speciesId=" + $("subspecies-species").value +
+										"&extinct=" + $("subspecies-extinct").checked +
+										"&minHeight=" + $("subspecies-min-height").value +
+										"&maxHeight=" + $("subspecies-max-height").value +
+										"&minWidth=" + $("subspecies-min-width").value +
+										"&maxWidth=" + $("subspecies-max-width").value +
+										"&location=" + $("subspecies-location").value);
 			}
 			function editSubspecies() {
 				editImpl("subspecies", (data) => {
@@ -272,6 +279,18 @@
 					</div>
 					<div class="form-group">
 						<input id="subspecies-min-height" class="form-input" placeholder="Min height" />
+					</div>
+					<div class="form-group">
+						<input id="subspecies-max-height" class="form-input" placeholder="Max height" />
+					</div>
+					<div class="form-group">
+						<input id="subspecies-min-width" class="form-input" placeholder="Min width" />
+					</div>
+					<div class="form-group">
+						<input id="subspecies-max-width" class="form-input" placeholder="Max width" />
+					</div>
+					<div class="form-group">
+						<input id="subspecies-location" class="form-input" placeholder="Location" />
 					</div>
 					<div class="form-group">
 						<label class="form-checkbox">
