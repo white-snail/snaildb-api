@@ -89,8 +89,8 @@ public class SnailService {
 	
 	// GET RANDOM
 	
-	public Subspecies getRandomSubspecies() {
-		return subspeciesRepository.findRandom();
+	public Species getRandomSpecies() {
+		return speciesRepository.findRandom();
 	}
 	
 	// GET BY ID
