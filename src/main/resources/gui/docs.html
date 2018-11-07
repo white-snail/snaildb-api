@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>SnailDB API documentation</title>
+		<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css" />
+	</head>
+	<body>
+		<div class="container grid-lg">
+			<h1>SnailDB API documentation</h1>
+			<p>Every request returns a JSON.</p>
+			<div class="columns">
+				<div class="column col-12">
+					<code>GET /getinfo/total</code>
+					<p>Gets the amount of taxonomers, superfamilies, families, genuses, species and subspecies in the database.</p>
+				</div>
+				<div class="column col-12">
+					<code>GET /getrandomsnail</code>
+					<p>Gets a random snail species.</p>
+				</div>
+				<div class="column col-12">
+					<code>GET /getallsnails/[superfamily|family|genus|species|subspecies]</code>
+				</div>
+				<div class="column col-12">
+					<code>GET /getsnailbyid/[superfamily|family|genus|species|subspecies]/{id}</code>
+				</div>
+				<div class="column col-12">
+					<code>GET /getsnailbyname/{superfamily}</code>
+					<code>GET /getsnailbyname/{superfamily}/{family}</code>
+					<code>GET /getsnailbyname/{superfamily}/{family}/{genus}</code>
+					<code>GET /getsnailbyname/{superfamily}/{family}/{genus}/{species}</code>
+					<code>GET /getsnailbyname/{superfamily}/{family}/{genus}/{species}/{subspecies}</code>
+				</div>
+				<div class="column col-12">
+					<code>GET /getalltaxonomers</code>
+				</div>
+				<div class="column col-12">
+					<code>GET /gettaxonomerbyid/{id}</code>
+				</div>
+				<div class="column col-12">
+					<code>GET /gettaxonomerbyname/{surname}</code>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

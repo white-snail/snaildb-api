@@ -20,7 +20,7 @@ public class GetInfoController {
 	
 	@GetMapping(value = "total")
 	public GetTotalResponse getTotal() {
-		return new GetTotalResponse(service.countSubspecies());
+		return new GetTotalResponse(service.countTaxonomers(), service.countSuperfamilies(), service.countFamilies(), service.countGenuses(), service.countSpecies(), service.countSubspecies());
 	}
 	
 }

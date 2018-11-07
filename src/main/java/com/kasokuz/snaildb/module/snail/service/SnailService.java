@@ -169,6 +169,26 @@ public class SnailService {
 	
 	// COUNT
 	
+	public Long countTaxonomers() {
+		return taxonomerRepository.count();
+	}
+	
+	public Long countSuperfamilies() {
+		return superfamilyRepository.count();
+	}
+	
+	public Long countFamilies() {
+		return familyRepository.count();
+	}
+	
+	public Long countGenuses() {
+		return genusRepository.count();
+	}
+	
+	public Long countSpecies() {
+		return speciesRepository.count();
+	}
+	
 	public Long countSubspecies() {
 		return subspeciesRepository.count();
 	}

@@ -1,4 +1,4 @@
-package com.kasokuz.snaildb.module.snail.web;
+package com.kasokuz.snaildb.module.snail.web.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
