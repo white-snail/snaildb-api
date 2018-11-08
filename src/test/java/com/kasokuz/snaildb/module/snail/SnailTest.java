@@ -11,7 +11,6 @@ import com.kasokuz.snaildb.domain.Species;
 import com.kasokuz.snaildb.domain.Subspecies;
 import com.kasokuz.snaildb.domain.Superfamily;
 import com.kasokuz.snaildb.domain.Taxonomer;
-import com.kasokuz.snaildb.module.snail.domain.*;
 import com.kasokuz.snaildb.service.SnailService;
 
 @SpringBootTest
