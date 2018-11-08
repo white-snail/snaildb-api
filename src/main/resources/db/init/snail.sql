@@ -10,7 +10,8 @@ create table snail_taxonomer (
 create table snail_superfamily (
 	superfamily_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	name varchar(255) NOT NULL,
-	taxonomy_year int NOT NULL
+	taxonomy_year int NOT NULL,
+	type varchar(20) NOT NULL
 );
 
 create table snail_superfamily_taxonomer (
@@ -58,6 +59,7 @@ create table snail_species (
 	genus_id int NOT NULL,
 	name varchar(255) NOT NULL,
 	taxonomy_year int NOT NULL,
+	viviparous boolean NOT NULL DEFAULT false,
 	FOREIGN KEY(genus_id) REFERENCES snail_genus(genus_id) ON DELETE CASCADE
 );
 
@@ -79,7 +81,7 @@ create table snail_subspecies (
 	min_width int,
 	max_width int,
 	extinct boolean NOT NULL DEFAULT false,
-	viviparous boolean,
+	location varchar(255),
 	FOREIGN KEY(species_id) REFERENCES snail_species(species_id) ON DELETE CASCADE
 );
 
