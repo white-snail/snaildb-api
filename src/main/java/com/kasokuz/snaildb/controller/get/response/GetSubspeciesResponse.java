@@ -4,7 +4,7 @@ public class GetSubspeciesResponse extends CommonResponse {
 	
 	public final Integer minHeight, maxHeight, minWidth, maxWidth;
 	
-	public final Boolean extinct, viviparous;
+	public final Boolean extinct;
 	
 	public final String location;
 	
@@ -15,7 +15,6 @@ public class GetSubspeciesResponse extends CommonResponse {
 		minWidth = subspecies.getMinWidth();
 		maxWidth = subspecies.getMaxWidth();
 		extinct = subspecies.getExtinct();
-		viviparous = subspecies.getViviparous();
 		location = subspecies.getLocation();
 	}
 	

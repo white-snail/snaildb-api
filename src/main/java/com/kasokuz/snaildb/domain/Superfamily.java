@@ -28,6 +28,9 @@ public class Superfamily implements IdNameInterface {
 	@Column(nullable = false)
 	private Integer taxonomyYear;
 	
+	@Column(nullable = false)
+	private String type;
+	
 	@Override
 	public Integer getId() {
 		return superfamilyId;
@@ -72,6 +75,14 @@ public class Superfamily implements IdNameInterface {
 
 	public void setTaxonomyYear(Integer taxonomyYear) {
 		this.taxonomyYear = taxonomyYear;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

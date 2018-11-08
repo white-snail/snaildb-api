@@ -19,6 +19,12 @@ public class User {
 	private String name;
 	
 	private String surname;
+	
+	@Column(nullable = false)
+	private Boolean admin = false;
+	
+	@Column(nullable = false)
+	private String social = "{}";
 
 	public Integer getUserId() {
 		return userId;
@@ -58,6 +64,22 @@ public class User {
 
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+
+	public Boolean getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
+	}
+
+	public String getSocial() {
+		return social;
+	}
+
+	public void setSocial(String social) {
+		this.social = social;
 	}
 	
 }

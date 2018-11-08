@@ -26,6 +26,7 @@
 						const option = `<option value="${t.id}">${t.name}</option>`;
 						$("superfamily-delete").innerHTML += option;
 						$("family-superfamily").innerHTML += option;
+						$("superfamily-type").value = t.type;
 					}
 				});
 				get("getallsnails/families", (data) => {
@@ -50,12 +51,19 @@
 						const option = `<option value="${t.id}">${t.name}</option>`;
 						$("species-delete").innerHTML += option;
 						$("subspecies-species").innerHTML += option;
+						$("species-viviparous").checked = t.viviparous;
 					}
 				});
 				get("getallsnails/subspecies", (data) => {
 					for(var i in data) {
 						const t = data[i];
 						$("subspecies-delete").innerHTML += `<option value="${t.id}">${t.name}</option>`;
+						$("subspecies-min-height").value = t.minHeight;
+						$("subspecies-max-height").value = t.maxHeight;
+						$("subspecies-min-width").value = t.minWidth;
+						$("subspecies-max-width").value = t.maxWidth;
+						$("subspecies-location").value = t.location;
+						$("subspecies-extinct").checked = t.extinct;
 					}
 				});
 			};
@@ -153,7 +161,14 @@
 					<div class="form-group">
 						<input id="superfamily-taxonomy-year" class="form-input" placeholder="Taxonomy year" />
 					</div>
-					<button id="superfamily-add-btn" class="btn float-right" onclick="addImpl('superfamily')">Add</button>
+					<div class="form-group">
+						<select id="superfamily-type" class="form-select">
+							<option selected disabled hidden>Type</type>
+							<option value="land">Land</option>
+							<option value="freshwater">Fresh Water</option>
+						</select>
+					</div>
+					<button id="superfamily-add-btn" class="btn float-right" onclick="addImpl('superfamily', '&type=' + $('superfamily-type').value)">Add</button>
 				</div>
 				<div class="column col-lg-6">
 					<div class="form-group">
@@ -246,7 +261,13 @@
 					<div class="form-group">
 						<input id="species-taxonomy-year" class="form-input" placeholder="Taxonomy year" />
 					</div>
-					<button id="species-add-btn" class="btn float-right" onclick="addImpl('species', '&genusId=' + $('species-genus').value)">Add</button>
+					<div class="form-group">
+						<label class="form-checkbox">
+							<input id="subspecies-viviparous" type="checkbox" />
+							<i class="form-icon"></i> Viviparous
+						</label>
+					</div>
+					<button id="species-add-btn" class="btn float-right" onclick="addImpl('species', '&genusId=' + $('species-genus').value + '&viviparous=' + $('species-viviparous').value)">Add</button>
 				</div>
 				<div class="column col-lg-6">
 					<div class="form-group">

@@ -24,7 +24,7 @@ public class AdminGUIController {
 	}
 	
 	@GetMapping(value = "admin", produces = MediaType.TEXT_HTML_VALUE)
-	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('USER')")
 	public ResponseEntity<byte[]> getAdmin() throws IOException {
 		return GUI.read("admin.html");
 	}

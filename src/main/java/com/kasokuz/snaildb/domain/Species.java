@@ -31,6 +31,9 @@ public class Species implements IdNameInterface {
 	
 	@Column(nullable = false)
 	private Integer taxonomyYear;
+	
+	@Column(nullable = false)
+	private Boolean viviparous = false;
 
 	@Override
 	public Integer getId() {
@@ -84,6 +87,14 @@ public class Species implements IdNameInterface {
 
 	public void setTaxonomyYear(Integer taxonomyYear) {
 		this.taxonomyYear = taxonomyYear;
+	}
+
+	public Boolean getViviparous() {
+		return viviparous;
+	}
+
+	public void setViviparous(Boolean viviparous) {
+		this.viviparous = viviparous;
 	}
 
 }

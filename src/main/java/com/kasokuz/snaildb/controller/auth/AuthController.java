@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -37,17 +36,12 @@ public class AuthController {
 	@Autowired
 	private AccountService service;
 	
-	@Value("${registration.enabled}")
-	private Boolean registrationEnabled;
-	
 	@PostMapping(value = "register")
 	public void postRegister(@RequestParam String username, @RequestParam String password) throws NoSuchAlgorithmException {
-		if(this.registrationEnabled) {
-			User user = new User();
-			user.setUsername(username);
-			user.setPassword(MessageDigest.getInstance("SHA-256").digest(password.getBytes(StandardCharsets.UTF_8)));
-			this.service.saveUser(user);
-		}
+		User user = new User();
+		user.setUsername(username);
+		user.setPassword(MessageDigest.getInstance("SHA-256").digest(password.getBytes(StandardCharsets.UTF_8)));
+		this.service.saveUser(user);
 	}
 
 	@PostMapping(value = "login")
@@ -91,7 +85,8 @@ public class AuthController {
 				@Override
 				public Collection<? extends GrantedAuthority> getAuthorities() {
 					List<GrantedAuthority> ret = new ArrayList<>();
-					ret.add(() -> "ADMIN");
+					ret.add(() -> "USER");
+					if(user.getAdmin()) ret.add(() -> "ADMIN");
 					return ret;
 				}
 			});

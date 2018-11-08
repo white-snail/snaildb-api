@@ -21,7 +21,7 @@ public class SetSuperfamilyController {
 	private SnailService service;
 	
 	@PostMapping(value = "edit")
-	public SuccessfulResponse postEdit(@RequestParam(required = false) Integer id, @RequestParam String name, @RequestParam Integer[] taxonomers, @RequestParam Integer taxonomyYear) {
+	public SuccessfulResponse postEdit(@RequestParam(required = false) Integer id, @RequestParam String name, @RequestParam Integer[] taxonomers, @RequestParam Integer taxonomyYear, @RequestParam String type) {
 		Superfamily superfamily = new Superfamily();
 		if(id != null) superfamily.setSuperfamilyId(id);
 		superfamily.setName(name);
