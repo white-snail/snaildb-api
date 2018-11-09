@@ -7,7 +7,7 @@ public class GetSpeciesResponse extends CommonResponse {
 	
 	public final Integer genusId;
 	
-	public final Boolean viviparous;
+	public final Boolean viviparous, extinct;
 	
 	public final List<GetSubspeciesResponse> subspecies = new ArrayList<>();
 	
@@ -15,6 +15,7 @@ public class GetSpeciesResponse extends CommonResponse {
 		super(species.getSpeciesId(), species.getName(), species.getTaxonomers(), species.getTaxonomyYear());
 		this.genusId = species.getGenus().getGenusId();
 		this.viviparous = species.getViviparous();
+		this.extinct = species.getExtinct();
 		for(com.kasokuz.snaildb.domain.Subspecies subspecies : species.getSubspecies()) {
 			this.subspecies.add(new GetSubspeciesResponse(subspecies));
 		}

@@ -40,9 +40,6 @@ public class Subspecies implements IdNameInterface {
 	private Integer lifespan;
 	
 	private String location;
-
-	@Column(nullable = false)
-	private Boolean extinct = false;
 	
 	@Override
 	public Integer getId() {
@@ -136,14 +133,6 @@ public class Subspecies implements IdNameInterface {
 
 	public void setLocation(String location) {
 		this.location = location;
-	}
-
-	public Boolean getExtinct() {
-		return extinct;
-	}
-
-	public void setExtinct(Boolean extinct) {
-		this.extinct = extinct;
 	}
 
 }

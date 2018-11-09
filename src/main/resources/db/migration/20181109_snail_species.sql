@@ -1,0 +1,1 @@
+alter table snail_species add extinct boolean DEFAULT false;

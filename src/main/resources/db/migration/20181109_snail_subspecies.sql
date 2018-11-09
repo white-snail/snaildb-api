@@ -1,0 +1,1 @@
+alter table snail_subspecies drop column extinct;

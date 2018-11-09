@@ -10,8 +10,6 @@ public class GetSubspeciesResponse extends CommonResponse {
 	
 	public final String location;
 	
-	public final Boolean extinct;
-	
 	public GetSubspeciesResponse(com.kasokuz.snaildb.domain.Subspecies subspecies) {
 		super(subspecies.getSubspeciesId(), subspecies.getName(), subspecies.getTaxonomers(), subspecies.getTaxonomyYear());
 		this.speciesId = subspecies.getSpecies().getSpeciesId();
@@ -21,7 +19,6 @@ public class GetSubspeciesResponse extends CommonResponse {
 		this.maxWidth = subspecies.getMaxWidth();
 		this.lifespan = subspecies.getLifespan();
 		this.location = subspecies.getLocation();
-		this.extinct = subspecies.getExtinct();
 	}
 	
 	public static GetSubspeciesResponse from(com.kasokuz.snaildb.domain.Subspecies subspecies) {

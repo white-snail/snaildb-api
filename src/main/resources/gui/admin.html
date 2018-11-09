@@ -110,7 +110,6 @@
 			
 			function addSubspecies() {
 				addImpl("subspecies", "&speciesId=" + $("subspecies-species").value +
-										"&extinct=" + $("subspecies-extinct").checked +
 										"&minHeight=" + $("subspecies-min-height").value +
 										"&maxHeight=" + $("subspecies-max-height").value +
 										"&minWidth=" + $("subspecies-min-width").value +
@@ -121,7 +120,6 @@
 			function editSubspecies() {
 				editImpl("subspecies", (data) => {
 					$("subspecies-species").value = data.speciesId;
-					$("subspecies-extinct").checked = data.extinct;
 					$("subspecies-min-height").value = data.minHeight;
 					$("subspecies-max-height").value = data.maxHeight;
 					$("subspecies-min-width").value = data.minWidth;
@@ -283,7 +281,13 @@
 							<i class="form-icon"></i> Viviparous
 						</label>
 					</div>
-					<button id="species-add-btn" class="btn float-right" onclick="addImpl('species', '&genusId=' + $('species-genus').value + '&viviparous=' + $('species-viviparous').checked)">Add</button>
+					<div class="form-group">
+						<label class="form-checkbox">
+							<input id="species-extinct" type="checkbox" />
+							<i class="form-icon"></i> Extinct
+						</label>
+					</div>
+					<button id="species-add-btn" class="btn float-right" onclick="addImpl('species', '&genusId=' + $('species-genus').value + '&viviparous=' + $('species-viviparous').checked + '&extinct=' + $('species-extinct').checked)">Add</button>
 				</div>
 				<div class="column col-lg-6">
 					<div class="form-group">
@@ -292,7 +296,7 @@
 						</select>
 					</div>
 					<button class="btn float-right" onclick="deleteImpl('species')">Delete</button>
-					<button class="btn float-right" onclick="editImpl('species', (data) => {$('species-genus').value=data.genusId; $('species-viviparous').checked=data.viviparous;})" style="margin-right:8px">Edit</button>
+					<button class="btn float-right" onclick="editImpl('species', (data) => {$('species-genus').value=data.genusId; $('species-viviparous').checked=data.viviparous;$('species-extinct').checked=data.extinct;})" style="margin-right:8px">Edit</button>
 				</div>
 			</div>
 			<hr>
@@ -331,12 +335,6 @@
 					</div>
 					<div class="form-group">
 						<input id="subspecies-location" class="form-input" placeholder="Location (e.g. 'ng.s,us,bj.se')" />
-					</div>
-					<div class="form-group">
-						<label class="form-checkbox">
-							<input id="subspecies-extinct" type="checkbox" />
-							<i class="form-icon"></i> Extinct
-						</label>
 					</div>
 					<button id="subspecies-add-btn" class="btn float-right" onclick="addSubspecies()">Add</button>
 				</div>

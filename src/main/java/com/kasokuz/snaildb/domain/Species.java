@@ -35,6 +35,9 @@ public class Species implements IdNameInterface {
 	@Column(nullable = false)
 	private Boolean viviparous = false;
 
+	@Column(nullable = false)
+	private Boolean extinct = false;
+
 	@Override
 	public Integer getId() {
 		return speciesId;
@@ -95,6 +98,14 @@ public class Species implements IdNameInterface {
 
 	public void setViviparous(Boolean viviparous) {
 		this.viviparous = viviparous;
+	}
+
+	public Boolean getExtinct() {
+		return extinct;
+	}
+
+	public void setExtinct(Boolean extinct) {
+		this.extinct = extinct;
 	}
 
 }

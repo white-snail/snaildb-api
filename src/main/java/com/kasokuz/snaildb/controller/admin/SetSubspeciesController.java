@@ -31,8 +31,7 @@ public class SetSubspeciesController {
 										@RequestParam Integer minWidth,
 										@RequestParam Integer maxWidth,
 										@RequestParam Integer lifespan,
-										@RequestParam String location,
-										@RequestParam Boolean extinct) {
+										@RequestParam String location) {
 		
 		Subspecies subspecies = new Subspecies();
 		if(id != null) subspecies.setSubspeciesId(id);
@@ -46,7 +45,6 @@ public class SetSubspeciesController {
 		subspecies.setMaxWidth(maxWidth);
 		subspecies.setLifespan(lifespan);
 		subspecies.setLocation(location);
-		subspecies.setExtinct(extinct);
 		this.service.saveSubspecies(subspecies);
 		return new SuccessfulResponse();
 	}
