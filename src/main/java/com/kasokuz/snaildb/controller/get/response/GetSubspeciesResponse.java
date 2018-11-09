@@ -2,20 +2,26 @@ package com.kasokuz.snaildb.controller.get.response;
 
 public class GetSubspeciesResponse extends CommonResponse {
 	
+	public final Integer speciesId;
+	
 	public final Integer minHeight, maxHeight, minWidth, maxWidth;
 	
-	public final Boolean extinct;
+	public final Integer lifespan;
 	
 	public final String location;
 	
+	public final Boolean extinct;
+	
 	public GetSubspeciesResponse(com.kasokuz.snaildb.domain.Subspecies subspecies) {
 		super(subspecies.getSubspeciesId(), subspecies.getName(), subspecies.getTaxonomers(), subspecies.getTaxonomyYear());
-		minHeight = subspecies.getMinHeight();
-		maxHeight = subspecies.getMaxHeight();
-		minWidth = subspecies.getMinWidth();
-		maxWidth = subspecies.getMaxWidth();
-		extinct = subspecies.getExtinct();
-		location = subspecies.getLocation();
+		this.speciesId = subspecies.getSpecies().getSpeciesId();
+		this.minHeight = subspecies.getMinHeight();
+		this.maxHeight = subspecies.getMaxHeight();
+		this.minWidth = subspecies.getMinWidth();
+		this.maxWidth = subspecies.getMaxWidth();
+		this.lifespan = subspecies.getLifespan();
+		this.location = subspecies.getLocation();
+		this.extinct = subspecies.getExtinct();
 	}
 	
 	public static GetSubspeciesResponse from(com.kasokuz.snaildb.domain.Subspecies subspecies) {

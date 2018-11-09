@@ -11,7 +11,8 @@ create table snail_superfamily (
 	superfamily_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	name varchar(255) NOT NULL,
 	taxonomy_year int NOT NULL,
-	type varchar(20) NOT NULL
+	type varchar(20) NOT NULL,
+	air_breathing boolean NOT NULL
 );
 
 create table snail_superfamily_taxonomer (
@@ -80,8 +81,9 @@ create table snail_subspecies (
 	max_height int,
 	min_width int,
 	max_width int,
-	extinct boolean NOT NULL DEFAULT false,
+	lifespan int, # in months
 	location varchar(255),
+	extinct boolean NOT NULL DEFAULT false,
 	FOREIGN KEY(species_id) REFERENCES snail_species(species_id) ON DELETE CASCADE
 );
 

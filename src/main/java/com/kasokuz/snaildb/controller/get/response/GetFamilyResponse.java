@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GetFamilyResponse extends CommonResponse {
+	
+	public final Integer superfamilyId;
 
 	public final List<Child> genuses = new ArrayList<>();
 	
 	public GetFamilyResponse(com.kasokuz.snaildb.domain.Family family) {
 		super(family.getFamilyId(), family.getName(), family.getTaxonomers(), family.getTaxonomyYear());
+		this.superfamilyId = family.getSuperfamily().getSuperfamilyId();
 		for(com.kasokuz.snaildb.domain.Genus genus : family.getGenuses()) {
 			genuses.add(new Child(genus.getGenusId(), genus.getName(), genus.getTaxonomers(), genus.getTaxonomyYear()));
 		}

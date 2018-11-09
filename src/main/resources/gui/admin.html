@@ -100,7 +100,7 @@
 						selected($(type + "-taxonomers"), data.result.taxonomers);
 						$(type + "-taxonomy-year").value = data.result.taxonomyYear;
 						$(type + "-add-btn").innerText = "Edit";
-						if(additional) additional(data);
+						if(additional) additional(data.result);
 					}
 				);
 			}
@@ -115,11 +115,19 @@
 										"&maxHeight=" + $("subspecies-max-height").value +
 										"&minWidth=" + $("subspecies-min-width").value +
 										"&maxWidth=" + $("subspecies-max-width").value +
+										"&lifespan=" + $("subspecies-lifespan").value +
 										"&location=" + $("subspecies-location").value);
 			}
 			function editSubspecies() {
 				editImpl("subspecies", (data) => {
-					$("subspecies-extinct").value = data.result.extinct;
+					$("subspecies-species").value = data.speciesId;
+					$("subspecies-extinct").checked = data.extinct;
+					$("subspecies-min-height").value = data.minHeight;
+					$("subspecies-max-height").value = data.maxHeight;
+					$("subspecies-min-width").value = data.minWidth;
+					$("subspecies-max-width").value = data.maxWidth;
+					$("subspecies-lifespan").value = data.lifespan;
+					$("subspecies-location").value = data.location;
 				});
 			}
 		</script>
@@ -167,9 +175,16 @@
 							<option selected disabled hidden>Type</type>
 							<option value="land">Land</option>
 							<option value="freshwater">Fresh Water</option>
+							<option value="saltwater">Salt Water</option>
 						</select>
 					</div>
-					<button id="superfamily-add-btn" class="btn float-right" onclick="addImpl('superfamily', '&type=' + $('superfamily-type').value)">Add</button>
+					<div class="form-group">
+						<label class="form-checkbox">
+							<input id="subspecies-air-breathing" type="checkbox" />
+							<i class="form-icon"></i> Air Breathing
+						</label>
+					</div>
+					<button id="superfamily-add-btn" class="btn float-right" onclick="addImpl('superfamily', '&type=' + $('superfamily-type').value + '&airBreathing=' + $('superfamily-air-breathing').checked)">Add</button>
 				</div>
 				<div class="column col-lg-6">
 					<div class="form-group">
@@ -178,7 +193,7 @@
 						</select>
 					</div>
 					<button class="btn float-right" onclick="deleteImpl('superfamily')">Delete</button>
-					<button class="btn float-right" onclick="editImpl('superfamily')" style="margin-right:8px">Edit</button>
+					<button class="btn float-right" onclick="editImpl('superfamily', (data) => {$('superfamily-type').value=data.type; $('superfamily-air-breathing').checked=data.airBreathing;})" style="margin-right:8px">Edit</button>
 				</div>
 			</div>
 			<hr>
@@ -209,7 +224,7 @@
 						</select>
 					</div>
 					<button class="btn float-right" onclick="deleteImpl('family')">Delete</button>
-					<button class="btn float-right" onclick="editImpl('family')" style="margin-right:8px">Edit</button>
+					<button class="btn float-right" onclick="editImpl('family', (data) => $('family-superfamily').value=data.superfamilyId)" style="margin-right:8px">Edit</button>
 				</div>
 			</div>
 			<hr>
@@ -240,7 +255,7 @@
 						</select>
 					</div>
 					<button class="btn float-right" onclick="deleteImpl('genus')">Delete</button>
-					<button class="btn float-right" onclick="editImpl('genus')" style="margin-right:8px">Edit</button>
+					<button class="btn float-right" onclick="editImpl('genus', (data) => $('genus-family').value=data.familyId)" style="margin-right:8px">Edit</button>
 				</div>
 			</div>
 			<hr>
@@ -264,11 +279,11 @@
 					</div>
 					<div class="form-group">
 						<label class="form-checkbox">
-							<input id="subspecies-viviparous" type="checkbox" />
+							<input id="species-viviparous" type="checkbox" />
 							<i class="form-icon"></i> Viviparous
 						</label>
 					</div>
-					<button id="species-add-btn" class="btn float-right" onclick="addImpl('species', '&genusId=' + $('species-genus').value + '&viviparous=' + $('species-viviparous').value)">Add</button>
+					<button id="species-add-btn" class="btn float-right" onclick="addImpl('species', '&genusId=' + $('species-genus').value + '&viviparous=' + $('species-viviparous').checked)">Add</button>
 				</div>
 				<div class="column col-lg-6">
 					<div class="form-group">
@@ -277,7 +292,7 @@
 						</select>
 					</div>
 					<button class="btn float-right" onclick="deleteImpl('species')">Delete</button>
-					<button class="btn float-right" onclick="editImpl('species')" style="margin-right:8px">Edit</button>
+					<button class="btn float-right" onclick="editImpl('species', (data) => {$('species-genus').value=data.genusId; $('species-viviparous').checked=data.viviparous;})" style="margin-right:8px">Edit</button>
 				</div>
 			</div>
 			<hr>
@@ -300,19 +315,22 @@
 						<input id="subspecies-taxonomy-year" class="form-input" placeholder="Taxonomy year" />
 					</div>
 					<div class="form-group">
-						<input id="subspecies-min-height" class="form-input" placeholder="Min height" />
+						<input id="subspecies-min-height" class="form-input" placeholder="Min height (in cm)" />
 					</div>
 					<div class="form-group">
-						<input id="subspecies-max-height" class="form-input" placeholder="Max height" />
+						<input id="subspecies-max-height" class="form-input" placeholder="Max height (in cm)" />
 					</div>
 					<div class="form-group">
-						<input id="subspecies-min-width" class="form-input" placeholder="Min width" />
+						<input id="subspecies-min-width" class="form-input" placeholder="Min width (in cm)" />
 					</div>
 					<div class="form-group">
-						<input id="subspecies-max-width" class="form-input" placeholder="Max width" />
+						<input id="subspecies-max-width" class="form-input" placeholder="Max width (in cm)" />
 					</div>
 					<div class="form-group">
-						<input id="subspecies-location" class="form-input" placeholder="Location" />
+						<input id="subspecies-lifespan" class="form-input" placeholder="Lifespan (in months)" />
+					</div>
+					<div class="form-group">
+						<input id="subspecies-location" class="form-input" placeholder="Location (e.g. 'ng.s,us,bj.se')" />
 					</div>
 					<div class="form-group">
 						<label class="form-checkbox">

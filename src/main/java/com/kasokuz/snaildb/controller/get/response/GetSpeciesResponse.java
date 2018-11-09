@@ -5,13 +5,16 @@ import java.util.List;
 
 public class GetSpeciesResponse extends CommonResponse {
 	
+	public final Integer genusId;
+	
 	public final Boolean viviparous;
 	
 	public final List<GetSubspeciesResponse> subspecies = new ArrayList<>();
 	
 	public GetSpeciesResponse(com.kasokuz.snaildb.domain.Species species) {
 		super(species.getSpeciesId(), species.getName(), species.getTaxonomers(), species.getTaxonomyYear());
-		viviparous = species.getViviparous();
+		this.genusId = species.getGenus().getGenusId();
+		this.viviparous = species.getViviparous();
 		for(com.kasokuz.snaildb.domain.Subspecies subspecies : species.getSubspecies()) {
 			this.subspecies.add(new GetSubspeciesResponse(subspecies));
 		}

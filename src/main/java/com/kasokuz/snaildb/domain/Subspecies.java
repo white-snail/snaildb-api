@@ -36,11 +36,13 @@ public class Subspecies implements IdNameInterface {
 	private Integer minWidth;
 	
 	private Integer maxWidth;
+	
+	private Integer lifespan;
+	
+	private String location;
 
 	@Column(nullable = false)
 	private Boolean extinct = false;
-	
-	private String location;
 	
 	@Override
 	public Integer getId() {
@@ -120,12 +122,12 @@ public class Subspecies implements IdNameInterface {
 		this.maxWidth = maxWidth;
 	}
 
-	public Boolean getExtinct() {
-		return extinct;
+	public Integer getLifespan() {
+		return lifespan;
 	}
 
-	public void setExtinct(Boolean extinct) {
-		this.extinct = extinct;
+	public void setLifespan(Integer lifespan) {
+		this.lifespan = lifespan;
 	}
 
 	public String getLocation() {
@@ -134,6 +136,14 @@ public class Subspecies implements IdNameInterface {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public Boolean getExtinct() {
+		return extinct;
+	}
+
+	public void setExtinct(Boolean extinct) {
+		this.extinct = extinct;
 	}
 
 }

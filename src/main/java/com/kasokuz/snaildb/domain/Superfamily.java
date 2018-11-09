@@ -31,6 +31,9 @@ public class Superfamily implements IdNameInterface {
 	@Column(nullable = false)
 	private String type;
 	
+	@Column(nullable = false)
+	private Boolean airBreathing;
+	
 	@Override
 	public Integer getId() {
 		return superfamilyId;
@@ -83,6 +86,14 @@ public class Superfamily implements IdNameInterface {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public Boolean getAirBreathing() {
+		return airBreathing;
+	}
+
+	public void setAirBreathing(Boolean airBreathing) {
+		this.airBreathing = airBreathing;
 	}
 
 }

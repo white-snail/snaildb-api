@@ -27,6 +27,7 @@ public class SetSuperfamilyController {
 		superfamily.setName(name);
 		for(Integer taxonomer : taxonomers) superfamily.getTaxonomers().add(this.service.getTaxonomer(taxonomer));
 		superfamily.setTaxonomyYear(taxonomyYear);
+		superfamily.setType(type);
 		this.service.saveSuperfamily(superfamily);
 		return new SuccessfulResponse();
 	}
