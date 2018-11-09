@@ -18,6 +18,11 @@ public class AdminGUIController {
 		return GUI.read("util.js");
 	}
 	
+	@GetMapping(value = "register", produces = MediaType.TEXT_HTML_VALUE)
+	public ResponseEntity<byte[]> getRegister() throws IOException {
+		return GUI.read("register.html");
+	}
+	
 	@GetMapping(value = "login", produces = MediaType.TEXT_HTML_VALUE)
 	public ResponseEntity<byte[]> getLogin() throws IOException {
 		return GUI.read("login.html");

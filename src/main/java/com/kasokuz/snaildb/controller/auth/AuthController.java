@@ -37,11 +37,15 @@ public class AuthController {
 	private AccountService service;
 	
 	@PostMapping(value = "register")
-	public void postRegister(@RequestParam String username, @RequestParam String password) throws NoSuchAlgorithmException {
+	public LogResponse postRegister(@RequestParam String username, @RequestParam String password, @RequestParam(required = false) String name, @RequestParam(required = false) String surname, @RequestParam String social) throws NoSuchAlgorithmException {
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(MessageDigest.getInstance("SHA-256").digest(password.getBytes(StandardCharsets.UTF_8)));
+		user.setName(name);
+		user.setSurname(surname);
+		user.setSocial(social);
 		this.service.saveUser(user);
+		return new LogResponse(true);
 	}
 
 	@PostMapping(value = "login")

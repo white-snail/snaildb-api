@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Login to the administration panel</title>
+		<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+		<script src="util.js"></script>
+		<script>
+			function register(event) {
+				event.preventDefault();
+				post(
+					"auth/register",
+					"username=" + document.getElementById("username").value +
+					"&password=" + document.getElementById("password").value +
+					"&name=" + document.getElementById("name").value +
+					"&surname=" + document.getElementById("surname").value +
+					"&social=" + document.getElementById("social").value,
+					(response) => {
+						if(response.successful) window.location = "login";
+						else showError(response.message);
+					},
+					() => showError("Cannot connect to the authentication server")
+				);
+			}
+		</script>
+	</head>
+	<body>
+		<div class="container grid-xs">
+			<div id="login">
+				<form onsubmit="register(event)">
+					<div class="form-group">
+						<input id="username" name="username" type="text" class="form-input" placeholder="Username" />
+					</div>
+					<div class="form-group">
+						<input id="password" name="password" type="password" class="form-input" placeholder="Password" />
+					</div>
+					<div class="form-group">
+						<input id="name" name="name" type="text" class="form-input" placeholder="Name" />
+					</div>
+					<div class="form-group">
+						<input id="surname" name="surname" type="text" class="form-input" placeholder="Surname" />
+					</div>
+					<div class="form-group">
+						<textarea id="social" name="social" type="text" class="form-input" placeholder="Social JSON"></textarea>
+					</div>
+					<button type="submit" class="btn">Register</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
