@@ -21,13 +21,14 @@ public class SetSuperfamilyController {
 	private SnailService service;
 	
 	@PostMapping(value = "edit")
-	public SuccessfulResponse postEdit(@RequestParam(required = false) Integer id, @RequestParam String name, @RequestParam Integer[] taxonomers, @RequestParam Integer taxonomyYear, @RequestParam String type) {
+	public SuccessfulResponse postEdit(@RequestParam(required = false) Integer id, @RequestParam String name, @RequestParam Integer[] taxonomers, @RequestParam Integer taxonomyYear, @RequestParam String type, @RequestParam Boolean airBreathing) {
 		Superfamily superfamily = new Superfamily();
 		if(id != null) superfamily.setSuperfamilyId(id);
 		superfamily.setName(name);
 		for(Integer taxonomer : taxonomers) superfamily.getTaxonomers().add(this.service.getTaxonomer(taxonomer));
 		superfamily.setTaxonomyYear(taxonomyYear);
 		superfamily.setType(type);
+		superfamily.setAirBreathing(airBreathing);
 		this.service.saveSuperfamily(superfamily);
 		return new SuccessfulResponse();
 	}
