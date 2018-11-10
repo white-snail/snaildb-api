@@ -42,7 +42,6 @@ function select(element) {
 	for(var i=0; i<element.options.length; i++) {
 		if(element.options[i].selected) values.push(element.options[i].value);
 	}
-	console.log(values);
 	return values.join(",");
 }
 
