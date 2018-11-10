@@ -203,6 +203,10 @@ public class SnailService {
 		return subspeciesRepository.count();
 	}
 	
+	public Long countSpeciesNotExtinct() {
+		return speciesRepository.countByExtinct(false);
+	}
+	
 	// DELETE
 	
 	@Transactional

@@ -23,4 +23,9 @@ public class GetInfoController {
 		return new GetTotalResponse(service.countTaxonomers(), service.countSuperfamilies(), service.countFamilies(), service.countGenuses(), service.countSpecies(), service.countSubspecies());
 	}
 	
+	@GetMapping(value = "speciesnotextinct")
+	public Long getSpeciesNotExtinct() {
+		return service.countSpeciesNotExtinct();
+	}
+	
 }

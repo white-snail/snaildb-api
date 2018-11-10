@@ -17,4 +17,6 @@ public interface SpeciesRepository extends CrudRepository<Species, Integer> {
 	@Query(value = "select * from snail_species order by rand() limit 1", nativeQuery = true)
 	public Species findRandom();
 	
+	public Long countByExtinct(Boolean extinct);
+	
 }
