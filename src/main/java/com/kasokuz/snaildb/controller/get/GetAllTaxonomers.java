@@ -26,7 +26,9 @@ public class GetAllTaxonomers {
 	public List<GetAllTaxonomersResponse> getAll() {
 		List<GetAllTaxonomersResponse> response = new ArrayList<>();
 		for(Taxonomer taxonomer : this.service.getTaxonomers()) {
-			response.add(new GetAllTaxonomersResponse(taxonomer));
+			if(taxonomer.getSuperfamilies().size() > 0 || taxonomer.getFamilies().size() > 0 || taxonomer.getGenuses().size() > 0 || taxonomer.getSpecies().size() > 0 || taxonomer.getSubspecies().size() > 0) {
+				response.add(new GetAllTaxonomersResponse(taxonomer));
+			}
 		}
 		return response;
 	}
