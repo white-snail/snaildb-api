@@ -3,6 +3,8 @@ package com.kasokuz.snaildb.controller.backup.response;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 public class Backup {
 	
 	public List<Taxonomer> taxonomers = new ArrayList<>();
@@ -136,10 +138,13 @@ public class Backup {
 		
 		public Integer y;
 		
+		@JsonInclude(JsonInclude.Include.NON_NULL)
 		public Integer mnh, mxh, mnw, mxw;
 		
+		@JsonInclude(JsonInclude.Include.NON_NULL)
 		public Integer f;
 		
+		@JsonInclude(JsonInclude.Include.NON_NULL)
 		public String l;
 		
 		public Subspecies() {}

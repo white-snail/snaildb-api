@@ -25,5 +25,27 @@ public class SearchResponse {
 		}
 		
 	}
+	
+	public static class Species extends Child {
+		
+		public final String genus;
+		
+		public Species(com.kasokuz.snaildb.domain.Species species) {
+			super(species);
+			this.genus = species.getGenus().getName();
+		}
+		
+	}
+	
+	public static class Subspecies extends Child {
+		
+		public final String genus, species;
+		
+		public Subspecies(com.kasokuz.snaildb.domain.Subspecies subspecies) {
+			super(subspecies);
+			this.genus = subspecies.getSpecies().getGenus().getName();
+			this.species = subspecies.getSpecies().getName();
+		}
+	}
 
 }
