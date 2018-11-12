@@ -37,10 +37,10 @@ public class SearchSnailController {
 			for(Superfamily superfamily : service.searchSuperfamilies(query)) response.superfamilies.add(new SearchResponse.Child(superfamily));
 		}
 		if(filters.size() == 0 || filter.contains("family")) {
-			for(Family family : service.searchFamilies(query)) response.families.add(new SearchResponse.Child(family));
+			for(Family family : service.searchFamilies(query)) response.families.add(new SearchResponse.Family(family));
 		}
 		if(filters.size() == 0 || filter.contains("genus")) {
-			for(Genus genus : service.searchGenuses(query)) response.genuses.add(new SearchResponse.Child(genus));
+			for(Genus genus : service.searchGenuses(query)) response.genera.add(new SearchResponse.Genus(genus));
 		}
 		if(filters.size() == 0 || filter.contains("species")) {
 			for(Species species : service.searchSpecies(query)) response.species.add(new SearchResponse.Species(species));
