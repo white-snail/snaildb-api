@@ -34,6 +34,16 @@ public class Superfamily implements IdNameInterface {
 	@Column(nullable = false)
 	private Boolean airBreathing;
 	
+	public Superfamily() {}
+	
+	public Superfamily(String name, List<Taxonomer> taxonomers, Integer taxonomyYear, String type, Boolean airBreathing) {
+		this.name = name;
+		this.taxonomers = taxonomers;
+		this.taxonomyYear = taxonomyYear;
+		this.type = type;
+		this.airBreathing = airBreathing;
+	}
+
 	@Override
 	public Integer getId() {
 		return superfamilyId;

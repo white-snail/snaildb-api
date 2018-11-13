@@ -1,5 +1,10 @@
 package com.kasokuz.snaildb.controller.backup;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -40,7 +45,45 @@ public class BackupController {
 	@PostMapping(value = "import", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@PreAuthorize("hasRole('ADMIN')")
 	public void postImport(@RequestBody Backup backup) {
-		//TODO
+		// delete the current database
+		for(Taxonomer taxonomer : service.getTaxonomers()) service.deleteTaxonomer(taxonomer.getTaxonomerId());
+		for(Superfamily superfamily : service.getSuperfamilies()) service.deleteSuperfamily(superfamily.getSuperfamilyId());
+		for(Family family : service.getFamilies()) service.deleteFamily(family.getFamilyId());
+		for(Genus genus : service.getGenuses()) service.deleteGenus(genus.getGenusId());
+		for(Species species : service.getSpecies()) service.deleteSpecies(species.getSpeciesId());
+		for(Subspecies subspecies : service.getSubspecies()) service.deleteSubspecies(subspecies.getSubspeciesId());
+		// save the new data
+		Map<Integer, Taxonomer> taxonomers = new HashMap<>();
+		Map<Integer, Superfamily> superfamilies = new HashMap<>();
+		Map<Integer, Family> families = new HashMap<>();
+		Map<Integer, Genus> genera = new HashMap<>();
+		Map<Integer, Species> species_ = new HashMap<>();
+		for(Backup.Taxonomer taxonomer : backup.taxonomers) {
+			taxonomers.put(taxonomer.id, service.saveTaxonomer(new Taxonomer(taxonomer.n, taxonomer.s)));
+		}
+		for(Backup.Superfamily superfamily : backup.superfamilies) {
+			superfamilies.put(superfamily.id, service.saveSuperfamily(new Superfamily(superfamily.n, getTaxonomers(superfamily.t, taxonomers), superfamily.y, superfamily.p, superfamily.a)));
+		}
+		for(Backup.Family family : backup.families) {
+			families.put(family.id, service.saveFamily(new Family(superfamilies.get(family.s), family.n, getTaxonomers(family.t, taxonomers), family.y)));
+		}
+		for(Backup.Genus genus : backup.genera) {
+			genera.put(genus.id, service.saveGenus(new Genus(families.get(genus.f), genus.n, getTaxonomers(genus.t, taxonomers), genus.y)));
+		}
+		for(Backup.Species species : backup.species) {
+			species_.put(species.id, service.saveSpecies(new Species(genera.get(species.g), species.n, getTaxonomers(species.t, taxonomers), species.y, species.v, species.e)));
+		}
+		for(Backup.Subspecies subspecies : backup.subspecies) {
+			service.saveSubspecies(new Subspecies(species_.get(subspecies.s), subspecies.n, getTaxonomers(subspecies.t, taxonomers), subspecies.y, subspecies.mnh, subspecies.mxh, subspecies.mnw, subspecies.mxw, subspecies.f, subspecies.l));
+		}
+	}
+	
+	private List<Taxonomer> getTaxonomers(List<Integer> ids, Map<Integer, Taxonomer> taxonomers) {
+		List<Taxonomer> ret = new ArrayList<>();
+		for(Integer id : ids) {
+			ret.add(taxonomers.get(id));
+		}
+		return ret;
 	}
 	
 }

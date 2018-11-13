@@ -32,6 +32,15 @@ public class Family implements IdNameInterface {
 	@Column(nullable = false)
 	private Integer taxonomyYear;
 	
+	public Family() {}
+	
+	public Family(Superfamily superfamily, String name, List<Taxonomer> taxonomers, Integer taxonomyYear) {
+		this.superfamily = superfamily;
+		this.name = name;
+		this.taxonomers = taxonomers;
+		this.taxonomyYear = taxonomyYear;
+	}
+
 	@Override
 	public Integer getId() {
 		return familyId;

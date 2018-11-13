@@ -33,6 +33,13 @@ public class Taxonomer {
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "taxonomers")
 	private List<Subspecies> subspecies;
 	
+	public Taxonomer() {}
+	
+	public Taxonomer(String name, String surname) {
+		this.name = name;
+		this.surname = surname;
+	}
+
 	public Integer getTaxonomerId() {
 		return taxonomerId;
 	}

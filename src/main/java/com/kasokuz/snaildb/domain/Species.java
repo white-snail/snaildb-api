@@ -37,6 +37,17 @@ public class Species implements IdNameInterface {
 
 	@Column(nullable = false)
 	private Boolean extinct = false;
+	
+	public Species() {}
+
+	public Species(Genus genus, String name, List<Taxonomer> taxonomers, Integer taxonomyYear, Boolean viviparous, Boolean extinct) {
+		this.genus = genus;
+		this.name = name;
+		this.taxonomers = taxonomers;
+		this.taxonomyYear = taxonomyYear;
+		this.viviparous = viviparous;
+		this.extinct = extinct;
+	}
 
 	@Override
 	public Integer getId() {

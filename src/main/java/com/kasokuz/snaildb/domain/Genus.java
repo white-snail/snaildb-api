@@ -32,6 +32,15 @@ public class Genus implements IdNameInterface {
 	@Column(nullable = false)
 	private Integer taxonomyYear;
 	
+	public Genus() {}
+	
+	public Genus(Family family, String name, List<Taxonomer> taxonomers, Integer taxonomyYear) {
+		this.family = family;
+		this.name = name;
+		this.taxonomers = taxonomers;
+		this.taxonomyYear = taxonomyYear;
+	}
+
 	@Override
 	public Integer getId() {
 		return genusId;

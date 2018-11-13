@@ -41,6 +41,21 @@ public class Subspecies implements IdNameInterface {
 	
 	private String location;
 	
+	public Subspecies() {}
+	
+	public Subspecies(Species species, String name, List<Taxonomer> taxonomers, Integer taxonomyYear, Integer minHeight, Integer maxHeight, Integer minWidth, Integer maxWidth, Integer lifespan, String location) {
+		this.species = species;
+		this.name = name;
+		this.taxonomers = taxonomers;
+		this.taxonomyYear = taxonomyYear;
+		this.minHeight = minHeight;
+		this.maxHeight = maxHeight;
+		this.minWidth = minWidth;
+		this.maxWidth = maxWidth;
+		this.lifespan = lifespan;
+		this.location = location;
+	}
+
 	@Override
 	public Integer getId() {
 		return subspeciesId;
