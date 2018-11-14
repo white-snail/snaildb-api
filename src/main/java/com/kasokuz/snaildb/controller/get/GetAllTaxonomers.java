@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kasokuz.snaildb.controller.get.response.GetAllTaxonomersResponse;
@@ -23,11 +24,17 @@ public class GetAllTaxonomers {
 	private SnailService service;
 	
 	@GetMapping
-	public List<GetAllTaxonomersResponse> getAll() {
+	public List<GetAllTaxonomersResponse> getAll(@RequestParam(required = false) Boolean all) {
 		List<GetAllTaxonomersResponse> response = new ArrayList<>();
-		for(Taxonomer taxonomer : this.service.getTaxonomers()) {
-			if(taxonomer.getSuperfamilies().size() > 0 || taxonomer.getFamilies().size() > 0 || taxonomer.getGenuses().size() > 0 || taxonomer.getSpecies().size() > 0 || taxonomer.getSubspecies().size() > 0) {
+		if(all != null && all == true) {
+			for(Taxonomer taxonomer : this.service.getTaxonomers()) {
 				response.add(new GetAllTaxonomersResponse(taxonomer));
+			}
+		} else {
+			for(Taxonomer taxonomer : this.service.getTaxonomers()) {
+				if(taxonomer.getSuperfamilies().size() > 0 || taxonomer.getFamilies().size() > 0 || taxonomer.getGenuses().size() > 0 || taxonomer.getSpecies().size() > 0 || taxonomer.getSubspecies().size() > 0) {
+					response.add(new GetAllTaxonomersResponse(taxonomer));
+				}
 			}
 		}
 		return response;

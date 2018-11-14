@@ -8,7 +8,7 @@
 		<script src="util.js"></script>
 		<script>
 			window.onload = () => {
-				get("getalltaxonomers", (data) => {
+				get("getalltaxonomers?all=true", (data) => {
 					data.sort((a, b) => { return a.surname.localeCompare(b.surname) });
 					for(var i in data) {
 						const t = data[i];
