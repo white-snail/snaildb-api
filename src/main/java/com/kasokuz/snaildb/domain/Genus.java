@@ -94,5 +94,14 @@ public class Genus implements IdNameInterface {
 	public void setTaxonomyYear(Integer taxonomyYear) {
 		this.taxonomyYear = taxonomyYear;
 	}
+	
+	public boolean isExtinct() {
+		if(this.species.size() > 0) {
+			for(Species species : this.species) {
+				if(!species.getExtinct()) return false;
+			}
+		}
+		return true;
+	}
 
 }
