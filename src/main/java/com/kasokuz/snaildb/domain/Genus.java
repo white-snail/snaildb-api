@@ -19,6 +19,10 @@ public class Genus implements IdNameInterface {
 	@JoinColumn(name = "family_id")
 	private Family family;
 	
+	@ManyToOne
+	@JoinColumn(name = "subfamily_id")
+	private Subfamily subfamily;
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "genus")
 	private List<Species> species;
 	
@@ -34,8 +38,9 @@ public class Genus implements IdNameInterface {
 	
 	public Genus() {}
 	
-	public Genus(Family family, String name, List<Taxonomer> taxonomers, Integer taxonomyYear) {
+	public Genus(Family family, Subfamily subfamily, String name, List<Taxonomer> taxonomers, Integer taxonomyYear) {
 		this.family = family;
+		this.subfamily = subfamily;
 		this.name = name;
 		this.taxonomers = taxonomers;
 		this.taxonomyYear = taxonomyYear;
@@ -60,6 +65,14 @@ public class Genus implements IdNameInterface {
 
 	public void setFamily(Family family) {
 		this.family = family;
+	}
+
+	public Subfamily getSubfamily() {
+		return subfamily;
+	}
+
+	public void setSubfamily(Subfamily subfamily) {
+		this.subfamily = subfamily;
 	}
 
 	public List<Species> getSpecies() {

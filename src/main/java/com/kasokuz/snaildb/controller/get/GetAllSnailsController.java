@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kasokuz.snaildb.controller.get.response.GetAllFamiliesResponse;
 import com.kasokuz.snaildb.controller.get.response.GetAllGenusesResponse;
 import com.kasokuz.snaildb.controller.get.response.GetAllSpeciesResponse;
+import com.kasokuz.snaildb.controller.get.response.GetAllSubfamiliesResponse;
 import com.kasokuz.snaildb.controller.get.response.GetAllSubspeciesResponse;
 import com.kasokuz.snaildb.controller.get.response.GetAllSuperfamiliesResponse;
 import com.kasokuz.snaildb.domain.Family;
 import com.kasokuz.snaildb.domain.Genus;
 import com.kasokuz.snaildb.domain.Species;
+import com.kasokuz.snaildb.domain.Subfamily;
 import com.kasokuz.snaildb.domain.Subspecies;
 import com.kasokuz.snaildb.domain.Superfamily;
 import com.kasokuz.snaildb.service.SnailService;
@@ -44,6 +46,15 @@ public class GetAllSnailsController {
 		List<GetAllFamiliesResponse> response = new ArrayList<>();
 		for(Family family : service.getFamilies()) {
 			response.add(new GetAllFamiliesResponse(family));
+		}
+		return response;
+	}
+	
+	@GetMapping(value = "subfamilies")
+	public List<GetAllSubfamiliesResponse> getSubfamilies() {
+		List<GetAllSubfamiliesResponse> response = new ArrayList<>();
+		for(Subfamily subfamily : service.getSubfamilies()) {
+			response.add(new GetAllSubfamiliesResponse(subfamily));
 		}
 		return response;
 	}

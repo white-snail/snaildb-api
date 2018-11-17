@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 import com.kasokuz.snaildb.domain.Family;
 import com.kasokuz.snaildb.domain.Genus;
 import com.kasokuz.snaildb.domain.Species;
+import com.kasokuz.snaildb.domain.Subfamily;
 import com.kasokuz.snaildb.domain.Subspecies;
 import com.kasokuz.snaildb.domain.Superfamily;
 import com.kasokuz.snaildb.domain.Taxonomer;
 import com.kasokuz.snaildb.repository.FamilyRepository;
 import com.kasokuz.snaildb.repository.GenusRepository;
 import com.kasokuz.snaildb.repository.SpeciesRepository;
+import com.kasokuz.snaildb.repository.SubfamilyRepository;
 import com.kasokuz.snaildb.repository.SubspeciesRepository;
 import com.kasokuz.snaildb.repository.SuperfamilyRepository;
 import com.kasokuz.snaildb.repository.TaxonomerRepository;
@@ -29,6 +31,9 @@ public class SnailService {
 	
 	@Autowired
 	private FamilyRepository familyRepository;
+	
+	@Autowired
+	private SubfamilyRepository subfamilyRepository;
 	
 	@Autowired
 	private GenusRepository genusRepository;
@@ -54,6 +59,11 @@ public class SnailService {
 	@Transactional
 	public Family saveFamily(Family family) {
 		return familyRepository.save(family);
+	}
+	
+	@Transactional
+	public Subfamily saveSubfamily(Subfamily subfamily) {
+		return subfamilyRepository.save(subfamily);
 	}
 	
 	@Transactional
@@ -83,6 +93,10 @@ public class SnailService {
 	
 	public Iterable<Family> getFamilies() {
 		return familyRepository.findAll();
+	}
+	
+	public Iterable<Subfamily> getSubfamilies() {
+		return subfamilyRepository.findAll();
 	}
 	
 	public Iterable<Genus> getGenuses() {
@@ -115,6 +129,10 @@ public class SnailService {
 	
 	public Family getFamily(Integer familyId) {
 		return familyRepository.findByFamilyId(familyId);
+	}
+	
+	public Subfamily getSubfamily(Integer subfamilyId) {
+		return subfamilyRepository.findBySubfamilyId(subfamilyId);
 	}
 	
 	public Genus getGenus(Integer genusId) {
@@ -222,6 +240,11 @@ public class SnailService {
 	@Transactional
 	public void deleteFamily(Integer familyId) {
 		familyRepository.deleteById(familyId);
+	}
+	
+	@Transactional
+	public void deleteSubfamily(Integer subfamilyId) {
+		subfamilyRepository.deleteById(subfamilyId);
 	}
 	
 	@Transactional

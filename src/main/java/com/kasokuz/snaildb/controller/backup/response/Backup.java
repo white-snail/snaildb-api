@@ -11,6 +11,7 @@ public class Backup {
 	
 	public List<Superfamily> superfamilies = new ArrayList<>();
 	public List<Family> families = new ArrayList<>();
+	public List<Subfamily> subfamilies = new ArrayList<>();
 	public List<Genus> genera = new ArrayList<>();
 	public List<Species> species = new ArrayList<>();
 	public List<Subspecies> subspecies = new ArrayList<>();
@@ -80,9 +81,33 @@ public class Backup {
 		
 	}
 	
+	public static class Subfamily {
+		
+		public Integer id;
+		
+		public String n;
+		
+		public List<Integer> t = new ArrayList<>();
+		
+		public Integer y;
+		
+		public Subfamily() {}
+		
+		public Subfamily(com.kasokuz.snaildb.domain.Subfamily subfamily) {
+			this.id = subfamily.getSubfamilyId();
+			this.n = subfamily.getName();
+			for(com.kasokuz.snaildb.domain.Taxonomer taxonomer : subfamily.getTaxonomers()) this.t.add(taxonomer.getTaxonomerId());
+			this.y = subfamily.getTaxonomyYear();
+		}
+		
+	}
+	
 	public static class Genus {
 		
 		public Integer id, f;
+		
+		@JsonInclude(JsonInclude.Include.NON_NULL)
+		public Integer sf;
 		
 		public String n;
 		
@@ -95,6 +120,7 @@ public class Backup {
 		public Genus(com.kasokuz.snaildb.domain.Genus genus) {
 			this.id = genus.getGenusId();
 			this.f = genus.getFamily().getFamilyId();
+			if(genus.getSubfamily() != null) this.sf = genus.getSubfamily().getSubfamilyId();
 			this.n = genus.getName();
 			for(com.kasokuz.snaildb.domain.Taxonomer taxonomer : genus.getTaxonomers()) this.t.add(taxonomer.getTaxonomerId());
 			this.y = genus.getTaxonomyYear();

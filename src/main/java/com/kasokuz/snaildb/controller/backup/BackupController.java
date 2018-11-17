@@ -18,6 +18,7 @@ import com.kasokuz.snaildb.controller.backup.response.Backup;
 import com.kasokuz.snaildb.domain.Family;
 import com.kasokuz.snaildb.domain.Genus;
 import com.kasokuz.snaildb.domain.Species;
+import com.kasokuz.snaildb.domain.Subfamily;
 import com.kasokuz.snaildb.domain.Subspecies;
 import com.kasokuz.snaildb.domain.Superfamily;
 import com.kasokuz.snaildb.domain.Taxonomer;
@@ -36,6 +37,7 @@ public class BackupController {
 		for(Taxonomer taxonomer : service.getTaxonomers()) backup.taxonomers.add(new Backup.Taxonomer(taxonomer));
 		for(Superfamily superfamily : service.getSuperfamilies()) backup.superfamilies.add(new Backup.Superfamily(superfamily));
 		for(Family family : service.getFamilies()) backup.families.add(new Backup.Family(family));
+		for(Subfamily subfamily : service.getSubfamilies()) backup.subfamilies.add(new Backup.Subfamily(subfamily));
 		for(Genus genus : service.getGenuses()) backup.genera.add(new Backup.Genus(genus));
 		for(Species species : service.getSpecies()) backup.species.add(new Backup.Species(species));
 		for(Subspecies subspecies : service.getSubspecies()) backup.subspecies.add(new Backup.Subspecies(subspecies));
@@ -49,6 +51,7 @@ public class BackupController {
 		for(Taxonomer taxonomer : service.getTaxonomers()) service.deleteTaxonomer(taxonomer.getTaxonomerId());
 		for(Superfamily superfamily : service.getSuperfamilies()) service.deleteSuperfamily(superfamily.getSuperfamilyId());
 		for(Family family : service.getFamilies()) service.deleteFamily(family.getFamilyId());
+		for(Subfamily subfamily : service.getSubfamilies()) service.deleteSubfamily(subfamily.getSubfamilyId());
 		for(Genus genus : service.getGenuses()) service.deleteGenus(genus.getGenusId());
 		for(Species species : service.getSpecies()) service.deleteSpecies(species.getSpeciesId());
 		for(Subspecies subspecies : service.getSubspecies()) service.deleteSubspecies(subspecies.getSubspeciesId());
@@ -56,6 +59,7 @@ public class BackupController {
 		Map<Integer, Taxonomer> taxonomers = new HashMap<>();
 		Map<Integer, Superfamily> superfamilies = new HashMap<>();
 		Map<Integer, Family> families = new HashMap<>();
+		Map<Integer, Subfamily> subfamilies = new HashMap<>();
 		Map<Integer, Genus> genera = new HashMap<>();
 		Map<Integer, Species> species_ = new HashMap<>();
 		for(Backup.Taxonomer taxonomer : backup.taxonomers) {
@@ -67,8 +71,11 @@ public class BackupController {
 		for(Backup.Family family : backup.families) {
 			families.put(family.id, service.saveFamily(new Family(superfamilies.get(family.s), family.n, getTaxonomers(family.t, taxonomers), family.y)));
 		}
+		for(Backup.Subfamily subfamily : backup.subfamilies) {
+			subfamilies.put(subfamily.id, service.saveSubfamily(new Subfamily(subfamily.n, getTaxonomers(subfamily.t, taxonomers), subfamily.y)));
+		}
 		for(Backup.Genus genus : backup.genera) {
-			genera.put(genus.id, service.saveGenus(new Genus(families.get(genus.f), genus.n, getTaxonomers(genus.t, taxonomers), genus.y)));
+			genera.put(genus.id, service.saveGenus(new Genus(families.get(genus.f), subfamilies.get(genus.sf), genus.n, getTaxonomers(genus.t, taxonomers), genus.y)));
 		}
 		for(Backup.Species species : backup.species) {
 			species_.put(species.id, service.saveSpecies(new Species(genera.get(species.g), species.n, getTaxonomers(species.t, taxonomers), species.y, species.v, species.e)));

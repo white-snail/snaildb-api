@@ -7,13 +7,15 @@ import com.kasokuz.snaildb.domain.Species;
 
 public class GetGenusResponse extends CommonResponse {
 	
-	public final Integer familyId;
+	public final Integer familyId, subfamilyId;
 	
 	public final List<SpeciesChild> species = new ArrayList<>();
 	
 	public GetGenusResponse(com.kasokuz.snaildb.domain.Genus genus) {
 		super(genus.getGenusId(), genus.getName(), genus.getTaxonomers(), genus.getTaxonomyYear());
 		this.familyId = genus.getFamily().getFamilyId();
+		if(genus.getSubfamily() != null) this.subfamilyId = genus.getSubfamily().getSubfamilyId();
+		else this.subfamilyId = null;
 		for(com.kasokuz.snaildb.domain.Species species : genus.getSpecies()) {
 			this.species.add(new SpeciesChild(species));
 		}

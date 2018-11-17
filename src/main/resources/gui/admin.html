@@ -16,6 +16,7 @@
 						$("taxonomer-delete").innerHTML += option;
 						$("superfamily-taxonomers").innerHTML += option;
 						$("family-taxonomers").innerHTML += option;
+						$("subfamily-taxonomers").innerHTML += option;
 						$("genus-taxonomers").innerHTML += option;
 						$("species-taxonomers").innerHTML += option;
 						$("subspecies-taxonomers").innerHTML += option;
@@ -35,6 +36,14 @@
 						const option = `<option value="${t.id}">${t.name}</option>`;
 						$("family-delete").innerHTML += option;
 						$("genus-family").innerHTML += option;
+					}
+				});
+				get("getallsnails/subfamilies", (data) => {
+					for(var i in data) {
+						const t = data[i];
+						const option = `<option value="${t.id}">${t.name}</option>`;
+						$("subfamily-delete").innerHTML += option;
+						$("genus-subfamily").innerHTML += option;
 					}
 				});
 				get("getallsnails/genuses", (data) => {
@@ -218,6 +227,32 @@
 				</div>
 			</div>
 			<hr>
+			<h3>Subfamilies</h3>
+			<div class="columns">
+				<div class="column col-lg-6">
+					<input id="subfamily-id" type="hidden" />
+					<div class="form-group">
+						<input id="subfamily-name" class="form-input" placeholder="Name" />
+					</div>
+					<div class="form-group">
+						<select id="subfamily-taxonomers" class="form-select" placeholder="Taxonomers" multiple></select>
+					</div>
+					<div class="form-group">
+						<input id="subfamily-taxonomy-year" class="form-input" placeholder="Taxonomy year" />
+					</div>
+					<button id="subfamily-add-btn" class="btn float-right" onclick="addImpl('subfamily')">Add</button>
+				</div>
+				<div class="column col-lg-6">
+					<div class="form-group">
+						<select id="subfamily-delete" class="form-select">
+							<option selected disabled hidden>Select a subfamily</option>
+						</select>
+					</div>
+					<button class="btn float-right" onclick="deleteImpl('subfamily')">Delete</button>
+					<button class="btn float-right" onclick="editImpl('subfamily')" style="margin-right:8px">Edit</button>
+				</div>
+			</div>
+			<hr>
 			<h3>Genuses</h3>
 			<div class="columns">
 				<div class="column col-lg-6">
@@ -225,6 +260,11 @@
 					<div class="form-group">
 						<select id="genus-family" class="form-select">
 							<option selected disabled hidden>Family</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select id="genus-subfamily" class="form-select">
+							<option selected disabled hidden>Subfamily</option>
 						</select>
 					</div>
 					<div class="form-group">
@@ -236,7 +276,7 @@
 					<div class="form-group">
 						<input id="genus-taxonomy-year" class="form-input" placeholder="Taxonomy year" />
 					</div>
-					<button id="genus-add-btn" class="btn float-right" onclick="addImpl('genus', '&familyId=' + $('genus-family').value)">Add</button>
+					<button id="genus-add-btn" class="btn float-right" onclick="addImpl('genus', '&familyId=' + $('genus-family').value + '&subfamilyId=' + $('genus-subfamily').value)">Add</button>
 				</div>
 				<div class="column col-lg-6">
 					<div class="form-group">
@@ -245,7 +285,7 @@
 						</select>
 					</div>
 					<button class="btn float-right" onclick="deleteImpl('genus')">Delete</button>
-					<button class="btn float-right" onclick="editImpl('genus', (data) => $('genus-family').value=data.familyId)" style="margin-right:8px">Edit</button>
+					<button class="btn float-right" onclick="editImpl('genus', (data) => { $('genus-family').value=data.familyId; $('genus-subfamily').value=data.subfamilyId; })" style="margin-right:8px">Edit</button>
 				</div>
 			</div>
 			<hr>

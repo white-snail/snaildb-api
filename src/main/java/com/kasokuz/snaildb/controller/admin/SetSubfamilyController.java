@@ -9,33 +9,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kasokuz.snaildb.controller.admin.response.SuccessfulResponse;
-import com.kasokuz.snaildb.domain.Genus;
+import com.kasokuz.snaildb.domain.Subfamily;
 import com.kasokuz.snaildb.service.SnailService;
 
 @RestController
-@RequestMapping(value = "setgenus", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "setsubfamily", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @PreAuthorize("hasAuthority('ADMIN')")
-public class SetGenusController {
+public class SetSubfamilyController {
 	
 	@Autowired
 	private SnailService service;
 	
 	@PostMapping(value = "edit")
-	public SuccessfulResponse postEdit(@RequestParam(required = false) Integer id, @RequestParam Integer familyId, @RequestParam(required = false) Integer subfamilyId, @RequestParam String name, @RequestParam Integer[] taxonomers, @RequestParam Integer taxonomyYear) {
-		Genus genus = new Genus();
-		if(id != null) genus.setGenusId(id);
-		genus.setFamily(this.service.getFamily(familyId));
-		if(subfamilyId != null) genus.setSubfamily(this.service.getSubfamily(subfamilyId));
-		genus.setName(name);
-		for(Integer taxonomer : taxonomers) genus.getTaxonomers().add(this.service.getTaxonomer(taxonomer));
-		genus.setTaxonomyYear(taxonomyYear);
-		this.service.saveGenus(genus);
+	public SuccessfulResponse postEdit(@RequestParam(required = false) Integer id, @RequestParam String name, @RequestParam Integer[] taxonomers, @RequestParam Integer taxonomyYear) {
+		Subfamily subfamily = new Subfamily();
+		if(id != null) subfamily.setSubfamilyId(id);
+		subfamily.setName(name);
+		for(Integer taxonomer : taxonomers) subfamily.getTaxonomers().add(this.service.getTaxonomer(taxonomer));
+		subfamily.setTaxonomyYear(taxonomyYear);
+		this.service.saveSubfamily(subfamily);
 		return new SuccessfulResponse();
 	}
 	
 	@PostMapping(value = "delete")
 	public SuccessfulResponse postDelete(@RequestParam Integer id) {
-		this.service.deleteGenus(id);
+		this.service.deleteSubfamily(id);
 		return new SuccessfulResponse();
 	}
 
