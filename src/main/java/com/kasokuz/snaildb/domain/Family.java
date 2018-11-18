@@ -94,5 +94,13 @@ public class Family implements IdNameInterface {
 	public void setTaxonomyYear(Integer taxonomyYear) {
 		this.taxonomyYear = taxonomyYear;
 	}
+	
+	public boolean isExtinct() {
+		if(this.genuses.size() == 0) return false;
+		for(Genus genus : this.genuses) {
+			if(!genus.isExtinct()) return false;
+		}
+		return true;
+	}
 
 }

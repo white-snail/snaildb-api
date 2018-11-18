@@ -109,10 +109,9 @@ public class Genus implements IdNameInterface {
 	}
 	
 	public boolean isExtinct() {
-		if(this.species.size() > 0) {
-			for(Species species : this.species) {
-				if(!species.getExtinct()) return false;
-			}
+		if(this.species.size() == 0) return false;
+		for(Species species : this.species) {
+			if(!species.getExtinct()) return false;
 		}
 		return true;
 	}

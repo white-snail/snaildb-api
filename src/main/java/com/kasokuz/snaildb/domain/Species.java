@@ -19,6 +19,10 @@ public class Species implements IdNameInterface {
 	@JoinColumn(name = "genus_id")
 	private Genus genus;
 	
+	@ManyToOne
+	@JoinColumn(name = "subgenus_id")
+	private Subgenus subgenus;
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "species")
 	private List<Subspecies> subspecies;
 	
@@ -40,8 +44,9 @@ public class Species implements IdNameInterface {
 	
 	public Species() {}
 
-	public Species(Genus genus, String name, List<Taxonomer> taxonomers, Integer taxonomyYear, Boolean viviparous, Boolean extinct) {
+	public Species(Genus genus, Subgenus subgenus, String name, List<Taxonomer> taxonomers, Integer taxonomyYear, Boolean viviparous, Boolean extinct) {
 		this.genus = genus;
+		this.subgenus = subgenus;
 		this.name = name;
 		this.taxonomers = taxonomers;
 		this.taxonomyYear = taxonomyYear;
@@ -68,6 +73,14 @@ public class Species implements IdNameInterface {
 
 	public void setGenus(Genus genus) {
 		this.genus = genus;
+	}
+
+	public Subgenus getSubgenus() {
+		return subgenus;
+	}
+
+	public void setSubgenus(Subgenus subgenus) {
+		this.subgenus = subgenus;
 	}
 
 	public List<Subspecies> getSubspecies() {

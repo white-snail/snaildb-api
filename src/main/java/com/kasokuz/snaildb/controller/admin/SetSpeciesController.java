@@ -21,10 +21,11 @@ public class SetSpeciesController {
 	private SnailService service;
 	
 	@PostMapping(value = "edit")
-	public SuccessfulResponse postEdit(@RequestParam(required = false) Integer id, @RequestParam Integer genusId, @RequestParam String name, @RequestParam Integer[] taxonomers, @RequestParam Integer taxonomyYear, @RequestParam Boolean viviparous, @RequestParam Boolean extinct) {
+	public SuccessfulResponse postEdit(@RequestParam(required = false) Integer id, @RequestParam Integer genusId, @RequestParam(required = false) Integer subgenusId, @RequestParam String name, @RequestParam Integer[] taxonomers, @RequestParam Integer taxonomyYear, @RequestParam Boolean viviparous, @RequestParam Boolean extinct) {
 		Species species = new Species();
 		if(id != null) species.setSpeciesId(id);
 		species.setGenus(this.service.getGenus(genusId));
+		if(subgenusId != null) species.setSubgenus(this.service.getSubgenus(subgenusId));
 		species.setName(name);
 		for(Integer taxonomer : taxonomers) species.getTaxonomers().add(this.service.getTaxonomer(taxonomer));
 		species.setTaxonomyYear(taxonomyYear);

@@ -11,15 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kasokuz.snaildb.controller.get.response.GetAllFamiliesResponse;
-import com.kasokuz.snaildb.controller.get.response.GetAllGenusesResponse;
+import com.kasokuz.snaildb.controller.get.response.GetAllGeneraResponse;
 import com.kasokuz.snaildb.controller.get.response.GetAllSpeciesResponse;
 import com.kasokuz.snaildb.controller.get.response.GetAllSubfamiliesResponse;
+import com.kasokuz.snaildb.controller.get.response.GetAllSubgeneraResponse;
 import com.kasokuz.snaildb.controller.get.response.GetAllSubspeciesResponse;
 import com.kasokuz.snaildb.controller.get.response.GetAllSuperfamiliesResponse;
 import com.kasokuz.snaildb.domain.Family;
 import com.kasokuz.snaildb.domain.Genus;
 import com.kasokuz.snaildb.domain.Species;
 import com.kasokuz.snaildb.domain.Subfamily;
+import com.kasokuz.snaildb.domain.Subgenus;
 import com.kasokuz.snaildb.domain.Subspecies;
 import com.kasokuz.snaildb.domain.Superfamily;
 import com.kasokuz.snaildb.service.SnailService;
@@ -59,11 +61,20 @@ public class GetAllSnailsController {
 		return response;
 	}
 	
-	@GetMapping(value = "genuses")
-	public List<GetAllGenusesResponse> getGenuses() {
-		List<GetAllGenusesResponse> response = new ArrayList<>();
-		for(Genus genus : service.getGenuses()) {
-			response.add(new GetAllGenusesResponse(genus));
+	@GetMapping(value = "genera")
+	public List<GetAllGeneraResponse> getGenera() {
+		List<GetAllGeneraResponse> response = new ArrayList<>();
+		for(Genus genus : service.getGenera()) {
+			response.add(new GetAllGeneraResponse(genus));
+		}
+		return response;
+	}
+	
+	@GetMapping(value = "subgenera")
+	public List<GetAllSubgeneraResponse> getSubgenera() {
+		List<GetAllSubgeneraResponse> response = new ArrayList<>();
+		for(Subgenus subgenus : service.getSubgenera()) {
+			response.add(new GetAllSubgeneraResponse(subgenus));
 		}
 		return response;
 	}

@@ -9,6 +9,7 @@ import com.kasokuz.snaildb.domain.Family;
 import com.kasokuz.snaildb.domain.Genus;
 import com.kasokuz.snaildb.domain.Species;
 import com.kasokuz.snaildb.domain.Subfamily;
+import com.kasokuz.snaildb.domain.Subgenus;
 import com.kasokuz.snaildb.domain.Subspecies;
 import com.kasokuz.snaildb.domain.Superfamily;
 import com.kasokuz.snaildb.domain.Taxonomer;
@@ -16,6 +17,7 @@ import com.kasokuz.snaildb.repository.FamilyRepository;
 import com.kasokuz.snaildb.repository.GenusRepository;
 import com.kasokuz.snaildb.repository.SpeciesRepository;
 import com.kasokuz.snaildb.repository.SubfamilyRepository;
+import com.kasokuz.snaildb.repository.SubgenusRepository;
 import com.kasokuz.snaildb.repository.SubspeciesRepository;
 import com.kasokuz.snaildb.repository.SuperfamilyRepository;
 import com.kasokuz.snaildb.repository.TaxonomerRepository;
@@ -37,6 +39,9 @@ public class SnailService {
 	
 	@Autowired
 	private GenusRepository genusRepository;
+	
+	@Autowired
+	private SubgenusRepository subgenusRepository;
 	
 	@Autowired
 	private SpeciesRepository speciesRepository;
@@ -70,6 +75,11 @@ public class SnailService {
 	public Genus saveGenus(Genus genus) {
 		return genusRepository.save(genus);
 	}
+	
+	@Transactional
+	public Subgenus saveSubgenus(Subgenus subgenus) {
+		return subgenusRepository.save(subgenus);
+	}
 
 	@Transactional
 	public Species saveSpecies(Species species) {
@@ -99,8 +109,12 @@ public class SnailService {
 		return subfamilyRepository.findAll();
 	}
 	
-	public Iterable<Genus> getGenuses() {
+	public Iterable<Genus> getGenera() {
 		return genusRepository.findAll();
+	}
+	
+	public Iterable<Subgenus> getSubgenera() {
+		return subgenusRepository.findAll();
 	}
 	
 	public Iterable<Species> getSpecies() {
@@ -137,6 +151,10 @@ public class SnailService {
 	
 	public Genus getGenus(Integer genusId) {
 		return genusRepository.findByGenusId(genusId);
+	}
+	
+	public Subgenus getSubgenus(Integer subgenusId) {
+		return subgenusRepository.findBySubgenusId(subgenusId);
 	}
 	
 	public Species getSpecies(Integer speciesId) {
@@ -250,6 +268,11 @@ public class SnailService {
 	@Transactional
 	public void deleteGenus(Integer genusId) {
 		genusRepository.deleteById(genusId);
+	}
+	
+	@Transactional
+	public void deleteSubgenus(Integer subgenusId) {
+		subgenusRepository.deleteById(subgenusId);
 	}
 	
 	@Transactional

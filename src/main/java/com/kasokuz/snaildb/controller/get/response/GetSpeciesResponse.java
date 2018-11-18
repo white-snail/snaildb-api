@@ -5,7 +5,7 @@ import java.util.List;
 
 public class GetSpeciesResponse extends CommonResponse {
 	
-	public final Integer genusId;
+	public final Integer genusId, subgenusId;
 	
 	public final String type;
 	
@@ -16,6 +16,8 @@ public class GetSpeciesResponse extends CommonResponse {
 	public GetSpeciesResponse(com.kasokuz.snaildb.domain.Species species) {
 		super(species.getSpeciesId(), species.getName(), species.getTaxonomers(), species.getTaxonomyYear());
 		this.genusId = species.getGenus().getGenusId();
+		if(species.getSubgenus() != null) this.subgenusId = species.getSubgenus().getSubgenusId();
+		else this.subgenusId = null;
 		this.type = species.getGenus().getFamily().getSuperfamily().getType();
 		this.viviparous = species.getViviparous();
 		this.extinct = species.getExtinct();
