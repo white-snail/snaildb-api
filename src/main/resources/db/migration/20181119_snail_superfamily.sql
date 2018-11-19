@@ -1,0 +1,1 @@
+alter table snail_superfamily add complete bool NOT NULL DEFAULT false;

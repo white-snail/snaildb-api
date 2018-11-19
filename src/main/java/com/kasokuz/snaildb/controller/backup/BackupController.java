@@ -47,7 +47,7 @@ public class BackupController {
 	}
 	
 	@PostMapping(value = "import", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	//@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	public void postImport(@RequestBody Backup backup) {
 		// delete the current database
 		for(Taxonomer taxonomer : service.getTaxonomers()) service.deleteTaxonomer(taxonomer.getTaxonomerId());
@@ -70,7 +70,7 @@ public class BackupController {
 			taxonomers.put(taxonomer.id, service.saveTaxonomer(new Taxonomer(taxonomer.n, taxonomer.s)));
 		}
 		for(Backup.Superfamily superfamily : backup.superfamilies) {
-			superfamilies.put(superfamily.id, service.saveSuperfamily(new Superfamily(superfamily.n, getTaxonomers(superfamily.t, taxonomers), superfamily.y, superfamily.p, superfamily.a)));
+			superfamilies.put(superfamily.id, service.saveSuperfamily(new Superfamily(superfamily.n, getTaxonomers(superfamily.t, taxonomers), superfamily.y, superfamily.c, superfamily.p, superfamily.a)));
 		}
 		for(Backup.Family family : backup.families) {
 			families.put(family.id, service.saveFamily(new Family(superfamilies.get(family.s), family.n, getTaxonomers(family.t, taxonomers), family.y)));

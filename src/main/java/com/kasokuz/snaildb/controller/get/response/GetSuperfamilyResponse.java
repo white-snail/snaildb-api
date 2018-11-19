@@ -5,6 +5,8 @@ import java.util.List;
 
 public class GetSuperfamilyResponse extends CommonResponse {
 	
+	public final Boolean complete;
+	
 	public final String type;
 	
 	public final Boolean airBreathing;
@@ -13,6 +15,7 @@ public class GetSuperfamilyResponse extends CommonResponse {
 	
 	public GetSuperfamilyResponse(com.kasokuz.snaildb.domain.Superfamily superfamily) {
 		super(superfamily.getSuperfamilyId(), superfamily.getName(), superfamily.getTaxonomers(), superfamily.getTaxonomyYear());
+		this.complete = superfamily.getComplete();
 		this.type = superfamily.getType();
 		this.airBreathing = superfamily.getAirBreathing();
 		for(com.kasokuz.snaildb.domain.Family family : superfamily.getFamilies()) {

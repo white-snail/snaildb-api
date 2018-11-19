@@ -15,11 +15,14 @@ public class GetAllSuperfamiliesResponse {
 	
 	public final Integer taxonomyYear;
 	
+	public final Boolean complete;
+	
 	public GetAllSuperfamiliesResponse(Superfamily superfamily) {
 		this.id = superfamily.getSuperfamilyId();
 		this.name = superfamily.getName();
 		for(com.kasokuz.snaildb.domain.Taxonomer taxonomer : superfamily.getTaxonomers()) this.taxonomers.add(new Taxonomer(taxonomer));
 		this.taxonomyYear = superfamily.getTaxonomyYear();
+		this.complete = superfamily.getComplete();
 	}
 	
 	public static class Taxonomer {

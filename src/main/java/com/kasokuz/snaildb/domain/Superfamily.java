@@ -29,6 +29,9 @@ public class Superfamily implements IdNameInterface {
 	private Integer taxonomyYear;
 	
 	@Column(nullable = false)
+	private Boolean complete = false;
+	
+	@Column(nullable = false)
 	private String type;
 	
 	@Column(nullable = false)
@@ -36,10 +39,11 @@ public class Superfamily implements IdNameInterface {
 	
 	public Superfamily() {}
 	
-	public Superfamily(String name, List<Taxonomer> taxonomers, Integer taxonomyYear, String type, Boolean airBreathing) {
+	public Superfamily(String name, List<Taxonomer> taxonomers, Integer taxonomyYear, Boolean complete, String type, Boolean airBreathing) {
 		this.name = name;
 		this.taxonomers = taxonomers;
 		this.taxonomyYear = taxonomyYear;
+		this.complete = complete;
 		this.type = type;
 		this.airBreathing = airBreathing;
 	}
@@ -88,6 +92,14 @@ public class Superfamily implements IdNameInterface {
 
 	public void setTaxonomyYear(Integer taxonomyYear) {
 		this.taxonomyYear = taxonomyYear;
+	}
+
+	public Boolean getComplete() {
+		return complete;
+	}
+
+	public void setComplete(Boolean complete) {
+		this.complete = complete;
 	}
 
 	public String getType() {

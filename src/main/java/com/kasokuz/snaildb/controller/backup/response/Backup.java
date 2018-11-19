@@ -43,6 +43,8 @@ public class Backup {
 		
 		public Integer y;
 		
+		public Boolean c;
+		
 		public String p;
 		
 		public Boolean a;
@@ -54,6 +56,7 @@ public class Backup {
 			this.n = superfamily.getName();
 			for(com.kasokuz.snaildb.domain.Taxonomer taxonomer : superfamily.getTaxonomers()) this.t.add(taxonomer.getTaxonomerId());
 			this.y = superfamily.getTaxonomyYear();
+			this.c = superfamily.getComplete();
 			this.p = superfamily.getType();
 			this.a = superfamily.getAirBreathing();
 		}

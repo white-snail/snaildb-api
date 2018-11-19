@@ -179,6 +179,12 @@
 						<input id="superfamily-taxonomy-year" class="form-input" placeholder="Taxonomy year" />
 					</div>
 					<div class="form-group">
+						<label class="form-checkbox">
+							<input id="superfamily-complete" type="checkbox" />
+							<i class="form-icon"></i> Complete
+						</label>
+					</div>
+					<div class="form-group">
 						<select id="superfamily-type" class="form-select">
 							<option selected disabled hidden>Type</type>
 							<option value="land">Land</option>
@@ -192,7 +198,7 @@
 							<i class="form-icon"></i> Air Breathing
 						</label>
 					</div>
-					<button id="superfamily-add-btn" class="btn float-right" onclick="addImpl('superfamily', '&type=' + $('superfamily-type').value + '&airBreathing=' + $('superfamily-air-breathing').checked)">Add</button>
+					<button id="superfamily-add-btn" class="btn float-right" onclick="addImpl('superfamily', '&complete=' + $('superfamily-complete').checked + '&type=' + $('superfamily-type').value + '&airBreathing=' + $('superfamily-air-breathing').checked)">Add</button>
 				</div>
 				<div class="column col-lg-6">
 					<div class="form-group">
@@ -201,7 +207,7 @@
 						</select>
 					</div>
 					<button class="btn float-right" onclick="deleteImpl('superfamily')">Delete</button>
-					<button class="btn float-right" onclick="editImpl('superfamily', (data) => {$('superfamily-type').value=data.type; $('superfamily-air-breathing').checked=data.airBreathing;})" style="margin-right:8px">Edit</button>
+					<button class="btn float-right" onclick="editImpl('superfamily', (data) => {$('superfamily-complete').checked=data.complete; $('superfamily-type').value=data.type; $('superfamily-air-breathing').checked=data.airBreathing;})" style="margin-right:8px">Edit</button>
 				</div>
 			</div>
 			<hr>
