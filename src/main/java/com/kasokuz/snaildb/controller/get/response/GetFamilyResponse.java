@@ -9,6 +9,8 @@ import com.kasokuz.snaildb.domain.Subfamily;
 public class GetFamilyResponse extends CommonResponse {
 	
 	public final Integer superfamilyId;
+	
+	public final String type;
 
 	public final List<Child> subfamilies = new ArrayList<>();
 	
@@ -17,6 +19,7 @@ public class GetFamilyResponse extends CommonResponse {
 	public GetFamilyResponse(com.kasokuz.snaildb.domain.Family family) {
 		super(family.getFamilyId(), family.getName(), family.getTaxonomers(), family.getTaxonomyYear());
 		this.superfamilyId = family.getSuperfamily().getSuperfamilyId();
+		this.type = family.getSuperfamily().getType();
 		for(com.kasokuz.snaildb.domain.Genus genus : family.getGenuses()) {
 			if(genus.getSubfamily() != null) {
 				Subfamily subfamily = genus.getSubfamily();

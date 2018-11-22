@@ -10,6 +10,8 @@ public class GetGenusResponse extends CommonResponse {
 	
 	public final Integer familyId, subfamilyId;
 	
+	public final String type;
+	
 	public final List<Child> subgenera = new ArrayList<>();
 	
 	public final List<SpeciesChild> species = new ArrayList<>();
@@ -19,6 +21,7 @@ public class GetGenusResponse extends CommonResponse {
 		this.familyId = genus.getFamily().getFamilyId();
 		if(genus.getSubfamily() != null) this.subfamilyId = genus.getSubfamily().getSubfamilyId();
 		else this.subfamilyId = null;
+		this.type = genus.getFamily().getSuperfamily().getType();
 		for(com.kasokuz.snaildb.domain.Species species : genus.getSpecies()) {
 			if(species.getSubgenus() != null) {
 				Subgenus subgenus = species.getSubgenus();
