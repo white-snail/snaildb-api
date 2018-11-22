@@ -96,7 +96,6 @@ public class Family implements IdNameInterface {
 	}
 	
 	public boolean isExtinct() {
-		if(this.genuses.size() == 0) return false;
 		for(Genus genus : this.genuses) {
 			if(!genus.isExtinct()) return false;
 		}

@@ -17,12 +17,15 @@ public class GetAllSuperfamiliesResponse {
 	
 	public final Boolean complete;
 	
+	public final String type;
+	
 	public GetAllSuperfamiliesResponse(Superfamily superfamily) {
 		this.id = superfamily.getSuperfamilyId();
 		this.name = superfamily.getName();
 		for(com.kasokuz.snaildb.domain.Taxonomer taxonomer : superfamily.getTaxonomers()) this.taxonomers.add(new Taxonomer(taxonomer));
 		this.taxonomyYear = superfamily.getTaxonomyYear();
 		this.complete = superfamily.getComplete();
+		this.type = superfamily.getType();
 	}
 	
 	public static class Taxonomer {
